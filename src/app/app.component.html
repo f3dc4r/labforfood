@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="#"><img src="../assets/img/logo-bianco.png"></a>
+    <a class="navbar-brand" href="#" [routerLink]="['/']" routerLinkActive="router-link-active"><img src="../assets/img/logo-bianco.png"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,56 +10,59 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-utensils"></i> Ristoranti</a>
+          <a class="nav-link" href="#" [routerLink]="['/ristoranti']" routerLinkActive="router-link-active"><i class="fas fa-utensils"></i> Ristoranti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="login" aria-current="page" href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a class="nav-link" id="login" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="registrazione" aria-current="page" href="#"><i class="fas fa-user-plus"></i>
+          <a class="nav-link" id="registrazione" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalRegistrazione"><i class="fas fa-user-plus"></i>
             Registrazione</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fab fa-facebook-square" style="font-size: 24px;"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fab fa-instagram-square" style="font-size: 24px;"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fab fa-twitter-square" style="font-size: 24px;"></i></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fab fa-youtube-square" style="font-size: 24px;"></i></a>
-        </li> -->
       </ul>
-      <!-- <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> -->
     </div>
   </div>
 </nav>
 
-<!-- Searchbar -->
-<section class="search-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <form>
-          <div class="p-1 bg-light shadow-sm">
-            <div class="input-group">
-              <input type="search" placeholder="Inserisci il tuo indirizzo di consegna" class="form-control border-0 bg-light">
-              <div class="input-group-append d-grid col-1">
-                <button type="submit" class="btn btn-link" style="background-color: #b83d0f; color: #fff;"><i
-                    class="fas fa-search"></i></button>
-              </div>
-            </div>
-          </div>
-        </form>
+<!-- Modal Login -->
+<div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- Modal Registrazione -->
+<div class="modal fade" id="modalRegistrazione" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Registrazione</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-searchbar></app-searchbar>
 
 <!-- Carousel -->
 
@@ -92,3 +95,6 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
+<router-outlet></router-outlet>
+
