@@ -2,7 +2,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="#" [routerLink]="['/']" routerLinkActive="router-link-active"><img src="../assets/img/logo-bianco.png"></a>
+    <a class="navbar-brand" href="#" [routerLink]="['/']" routerLinkActive="router-link-active"><img
+        src="../assets/img/logo-bianco.png"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,13 +11,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['/ristoranti']" routerLinkActive="router-link-active"><i class="fas fa-utensils"></i> Ristoranti</a>
+          <a class="nav-link" href="#" [routerLink]="['/ristoranti']" routerLinkActive="router-link-active"><i
+              class="fas fa-utensils"></i> Ristoranti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="login" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a class="nav-link" id="login" aria-current="page" href="#" data-bs-toggle="modal"
+            data-bs-target="#modalLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="registrazione" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalRegistrazione"><i class="fas fa-user-plus"></i>
+          <a class="nav-link" id="registrazione" aria-current="page" href="#" data-bs-toggle="modal"
+            data-bs-target="#modalRegistrazione"><i class="fas fa-user-plus"></i>
             Registrazione</a>
         </li>
       </ul>
@@ -25,7 +29,8 @@
 </nav>
 
 <!-- Modal Login -->
-<div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -44,7 +49,8 @@
 </div>
 
 <!-- Modal Registrazione -->
-<div class="modal fade" id="modalRegistrazione" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalRegistrazione" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -96,5 +102,45 @@
   </button>
 </div>
 
+
+
+<!-- router-outlet -->
+
 <router-outlet></router-outlet>
 
+<!-- Footer -->
+
+<div class="footer-end">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3><a href="#" [routerLink]="['/']" routerLinkActive="router-link-active">Home</a></h3>
+                        <ul>
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalRegistrazione">Registrati</a></li>
+                            <li><a href="#">Ristoranti</a></li>
+                            <li><a href="#">Chi siamo</a></li>
+                            <li><a href="#">Lavora con noi</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Pagamenti</h3>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-cc-visa fa-3x"></i></a>&nbsp;<a href="#"><i class="fab fa-cc-mastercard fa-3x"></i></a>&nbsp;<a href="#"><i class="fab fa-cc-amex fa-3x"></i></a></li>
+                            <li><a href="#"><i class="fab fa-cc-paypal fa-3x"></i></a>&nbsp;<a href="#"><i class="fab fa-cc-apple-pay fa-3x"></i></a>&nbsp;<a href="#"><i class="fab fa-cc-amazon-pay fa-3x"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Labforfood Delivery</h3>
+                        <p>Scarica l'app di Labforfood Delivery e ordina dove vuoi, qualunque cosa desideri.</p>
+                        <p>&nbsp;</p>
+                        <p class="download-app"><a href="#"><img src="../assets/img/android.png"></a>&nbsp;<a href="#"><img src="../assets/img/apple.png"></a></p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon fab fa-facebook-f"></i></a><a href="#"><i class="icon fab fa-twitter"></i></a><a href="#"><i class="icon fab fa-instagram"></i></a><a href="#"><i class="icon fab fa-youtube"></i></a></div>
+                </div>
+                <p class="logo"><img src="../assets/img/logo-bianco.png"></p>
+                <p class="copyright">Labforfood Delivery © 2021 by Federico Caruso</p>
+            </div>
+        </footer>
+    </div>
