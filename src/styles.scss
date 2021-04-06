@@ -16,6 +16,10 @@
     color: rgba(216,216,216)!important;
 }
 
+.offcanvas-header{
+  display: none;
+}
+
 #login{
     border: 2px solid #fff;
     border-radius: 20px;
@@ -45,7 +49,7 @@
 
 .search-bar{
     position: absolute;
-    z-index: 10;
+    z-index: 5;
     top: 150px;
     width: 100%;
 }
@@ -176,4 +180,112 @@
 
   .footer-end .download-app a:hover{
     opacity: none!important;
+  }
+
+  // media query
+
+  @media only screen and (min-width: 320px) and (max-width: 480px){
+    .carousel-control-prev, .carousel-control-next{
+      display:none;
+    }
+
+    #registrazione{
+      width: 100%;
+    }
+
+    #login{
+      width: 100%;
+    }
+
+  }
+
+  @media only screen and (max-width: 767px){
+    form{
+      display: block;
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    form input{
+      font-size: 14px!important;
+    }
+
+    #app-promote{
+      display: block;
+      margin-top: 80px;
+    }
+  }
+
+  @media only screen and (max-width: 991px){
+    .carousel-inner{
+      height: auto!important;
+    }
+
+    form{
+      display: block;
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .offcanvas-header{
+      display: block;
+    }
+
+    .navbar-collapse{
+      position:fixed;
+      top: 0;
+      bottom: 0;
+      left: 100%;
+      width: 100%;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      overflow-y: 0;
+      visibility: hidden;
+      background-color: #b83d0f;
+      transition: visibility .4s ease-in-out ;
+    }
+
+    .navbar-collapse.show{
+      visibility: visible;
+      transform: translateX(-100%);
+      width: 50%;
+      z-index:-1;
+    }
+
+    .navbar-light .navbar-nav .nav-link{
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    #registrazione{
+      width:60%;
+      margin: 5px auto;
+      border: 2px solid #fff;
+      background-color: #fff;
+      color: #b83d0f!important;
+    }
+
+    #login{
+      width:60%;
+      margin: 0 auto;
+    }
+  
+  #login:hover{
+      background-color: #fff!important;
+      border: 2px solid #fff;
+      color: #b83d0f!important;
+  }
+  
+  }
+  
+  #registrazione:hover{
+      background-color: #b83d0f!important;
+      border: 2px solid #fff;
+      color: #fff!important;
+  }
+
+  
+
+  @media only screen and (min-width: 1200px){
+    
   }
