@@ -41,11 +41,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="mb-3">
+          <label for="FormControlInput1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="FormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="FormControlInput2" class="form-label">Password</label>
+          <input type="password" class="form-control" id="FormControlInput2" rows="3">
+        </div>
+        <div class="mb-3">
+          <i class="fas fa-key"></i>&nbsp;<a href="">Ricorda password</a>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-primary">Login</button>
       </div>
     </div>
   </div>
@@ -61,11 +71,33 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="mb-3">
+          <label for="FormControlInput6" class="form-label">Nominativo</label>
+          <input [(ngModel)]="regNominativo" type="email" class="form-control" id="FormControlInput6" placeholder="Inserisci il tuo nome">
+        </div>
+        <div class="mb-3">
+          <label for="FormControlInput3" class="form-label">Email</label>
+          <input [(ngModel)]="regEmail" type="email" class="form-control" id="FormControlInput3" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="FormControlInput4" class="form-label">Password</label>
+          <input [(ngModel)]="regPassword" type="password" class="form-control" id="FormControlInput4" rows="3">
+        </div>
+        <div class="mb-3">
+          <label for="FormControlInput5" class="form-label">Ripeti Password</label>
+          <input [disabled]="!regPassword" [(ngModel)]="regConfirmPassword" type="password" class="form-control" id="FormControlInput5" rows="3">
+          <span *ngIf="regConfirmPassword != regPassword"><p style="color: crimson;">Devi riscrivere la password correttamente</p></span>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="privacyCheck" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Ho preso visione della <a href="#">Informativa sulla privacy</a>
+          </label>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button [disabled]="testRegistrati()" type="button" class="btn btn-primary">Registrati</button>
       </div>
     </div>
   </div>
@@ -109,6 +141,7 @@
 <!-- router-outlet -->
 
 <router-outlet></router-outlet>
+<ngx-ui-loader></ngx-ui-loader>
 
 <!-- Footer -->
 
@@ -120,7 +153,7 @@
                         <h3><a href="#" [routerLink]="['/']" routerLinkActive="router-link-active">Home</a></h3>
                         <ul>
                             <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalRegistrazione">Registrati</a></li>
-                            <li><a href="#">Ristoranti</a></li>
+                            <li><a href="#" [routerLink]="['/ristoranti']" routerLinkActive="router-link-active">Ristoranti</a></li>
                             <li><a href="#">Chi siamo</a></li>
                             <li><a href="#">Lavora con noi</a></li>
                             <li><a href="#">Privacy Policy</a></li>

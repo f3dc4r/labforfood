@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */ 
 
 .navbar{
     position: absolute;
@@ -151,77 +151,18 @@
     transform: rotate(360deg);
   }
 
+  // ristoranti
 
-  // MEDIA QUERY
-  
-  @media (max-width:767px) {
-    .footer-end .item:not(.social) {
-      text-align:center;
-      padding-bottom:20px;
-    }
-  }
-  
-  .footer-end .item.text {
-    margin-bottom:36px;
-  }
-  
-  @media (max-width:767px) {
-    .footer-end .item.text {
-      margin-bottom:0;
-    }
-  }
-  
-  .footer-end .item.text p {
-    opacity:0.6;
-    margin-bottom:0;
-  }
-  
-  .footer-end .item.social {
-    text-align:center;
-  }
-  
-  @media (max-width:991px) {
-    .footer-end .item.social {
-      text-align:center;
-      margin-top:20px;
-    }
-  }
-  
-  .footer-end .item.social > a {
-    font-size:20px;
-    width:36px;
-    height:36px;
-    line-height:36px;
-    display:inline-block;
-    text-align:center;
-    border-radius:50%;
-    box-shadow:0 0 0 1px rgba(255,255,255,0.4);
-    margin:0 8px;
-    color:#fff;
-    opacity:0.75;
-  }
-  
-  .footer-end .item.social > a:hover {
-    opacity:0.9;
-  }
-  
-  .footer-end .copyright {
-    text-align:center;
-    padding-top:24px;
-    opacity:0.3;
-    font-size:13px;
-    margin-bottom:0;
+  .ristoranti{
+    margin-top: 2%;
+    padding: 10px;
+    box-shadow: 10px 10px 20px #dedede;
   }
 
-  .footer-end .logo {
-    text-align:center;
-    padding-top:24px;
-    opacity:0.3;
-    margin-bottom:0;
-  }
-
-  .footer-end .download-app a:hover{
-    opacity: none!important;
+  .menu{
+    margin-top: 5%;
+    padding: 10px;
+    box-shadow: 10px 10px 20px #dedede;
   }
 
   // media query
@@ -256,6 +197,11 @@
       display: block;
       margin-top: 80px;
     }
+
+    #ristoranti{
+      margin-top:70px;
+    }
+
   }
 
   @media only screen and (max-width: 991px){
@@ -330,4 +276,77 @@
 
   @media only screen and (min-width: 1200px){
     
+  }
+
+
+  // MEDIA QUERY
+  
+  @media (max-width:767px) {
+    .footer-end .item:not(.social) {
+      text-align:center;
+      padding-bottom:20px;
+    }
+  }
+  
+  .footer-end .item.text {
+    margin-bottom:36px;
+  }
+  
+  @media (max-width:767px) {
+    .footer-end .item.text {
+      margin-bottom:0;
+    }
+  }
+  
+  .footer-end .item.text p {
+    opacity:0.6;
+    margin-bottom:0;
+  }
+  
+  .footer-end .item.social {
+    text-align:center;
+  }
+  
+  @media (max-width:991px) {
+    .footer-end .item.social {
+      text-align:center;
+      margin-top:20px;
+    }
+  }
+  
+  .footer-end .item.social > a {
+    font-size:20px;
+    width:36px;
+    height:36px;
+    line-height:36px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.4);
+    margin:0 8px;
+    color:#fff;
+    opacity:0.75;
+  }
+  
+  .footer-end .item.social > a:hover {
+    opacity:0.9;
+  }
+  
+  .footer-end .copyright {
+    text-align:center;
+    padding-top:24px;
+    opacity:0.3;
+    font-size:13px;
+    margin-bottom:0;
+  }
+
+  .footer-end .logo {
+    text-align:center;
+    padding-top:24px;
+    opacity:0.3;
+    margin-bottom:0;
+  }
+
+  .footer-end .download-app a:hover{
+    opacity: none!important;
   }
