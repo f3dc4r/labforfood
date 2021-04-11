@@ -47,6 +47,13 @@
     color: #b83d0f!important;
 }
 
+#app-promote .card{
+  background-color: #b83d0f;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
 .search-bar{
     position: absolute;
     z-index: 5;
@@ -111,6 +118,41 @@
   .footer-end ul a:hover {
     opacity:0.8;
   }
+
+  .fa-facebook-f{
+    transition: 1s;
+  }
+
+  .fa-facebook-f:hover{
+    transform: rotate(360deg);
+  }
+
+  .fa-twitter{
+    transition: 1s;
+  }
+
+  .fa-twitter:hover{
+    transform: rotate(360deg);
+  }
+
+  .fa-instagram{
+    transition: 1s;
+  }
+
+  .fa-instagram:hover{
+    transform: rotate(360deg);
+  }
+
+  .fa-youtube{
+    transition: 1s;
+  }
+
+  .fa-youtube:hover{
+    transform: rotate(360deg);
+  }
+
+
+  // MEDIA QUERY
   
   @media (max-width:767px) {
     .footer-end .item:not(.social) {
