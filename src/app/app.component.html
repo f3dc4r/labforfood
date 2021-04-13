@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal">Chiudi</button>
         <button type="button" class="btn btn-primary">Login</button>
       </div>
     </div>
@@ -73,19 +73,23 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="FormControlInput6" class="form-label">Nominativo</label>
-          <input [(ngModel)]="regNominativo" type="email" class="form-control" id="FormControlInput6" placeholder="Inserisci il tuo nome">
+          <input [(ngModel)]="regNominativo" type="text" class="form-control" id="regNominativo" placeholder="Inserisci il tuo nome">
         </div>
         <div class="mb-3">
           <label for="FormControlInput3" class="form-label">Email</label>
-          <input [(ngModel)]="regEmail" type="email" class="form-control" id="FormControlInput3" placeholder="name@example.com">
+          <input [(ngModel)]="regEmail" type="email" class="form-control" id="regEmail" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="FormControlInput7" class="form-label">Username</label>
+          <input [(ngModel)]="regUsername" type="text" class="form-control" id="regUsername" placeholder="Inserisci l'username che vuoi utilizzare">
         </div>
         <div class="mb-3">
           <label for="FormControlInput4" class="form-label">Password</label>
-          <input [(ngModel)]="regPassword" type="password" class="form-control" id="FormControlInput4" rows="3">
+          <input [(ngModel)]="regPassword" type="password" class="form-control" id="regPassword" rows="3">
         </div>
         <div class="mb-3">
           <label for="FormControlInput5" class="form-label">Ripeti Password</label>
-          <input [disabled]="!regPassword" [(ngModel)]="regConfirmPassword" type="password" class="form-control" id="FormControlInput5" rows="3">
+          <input [disabled]="!regPassword" [(ngModel)]="regConfirmPassword" type="password" class="form-control" id="regConfirmPassword" rows="3">
           <span *ngIf="regConfirmPassword != regPassword"><p style="color: crimson;">Devi riscrivere la password correttamente</p></span>
         </div>
         <div class="form-check">
@@ -97,7 +101,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-        <button [disabled]="testRegistrati()" type="button" class="btn btn-primary">Registrati</button>
+        <button [disabled]="testRegistrati()" (click)="postRegistrazioneUser()" type="button" class="btn btn-primary">Registrati</button>
       </div>
     </div>
   </div>

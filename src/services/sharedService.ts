@@ -2,13 +2,11 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
-// const urlMockJson = 'https://run.mocky.io/v3/e9df3d5d-28bc-4772-a559-963a940870ba';
-
-// const urlTable = 'https://run.mocky.io/v3/cf9bf608-a9a5-4a26-9632-b8827a44d5c1';
-
-// const urlMockServer = 'http://localhost:3000';
-
 const urlRistoranti = 'http://l4com.labforweb.it/backend/web/index.php?r=ristoranti/list';
+
+const urlRegistrazione = 'http://l4com.labforweb.it/backend/web/test/ws/users/addUser.php';
+
+// TODO url LOGIN
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +26,15 @@ export class SharedService{
         return this.http.get("http://l4com.labforweb.it/backend/web/index.php?r=ristoranti/ristoranti-prodotti&IdRistorante=" + this.id);
     }
 
+    postRegistrazione(oggetto):Observable<any>{
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.post<any>(urlRegistrazione, oggetto, {headers});
+    }
+    
+
+    // TODO POST LOGIN
+    
+    
     // getDati():Observable<any>{
     //     return this.http.get(urlMockJson);
     // }

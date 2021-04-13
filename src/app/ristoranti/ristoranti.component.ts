@@ -41,4 +41,5 @@ export class RistorantiComponent implements OnInit {
     this.sharedService.id = e;
     this.getServerMenu();
   }
+
 }
