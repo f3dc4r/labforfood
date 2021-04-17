@@ -12,6 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, POSITION, SPINNER } from "ngx-ui-loader";
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   overlayColor: "rgba(255,255,255,0.90",
@@ -41,7 +44,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

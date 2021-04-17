@@ -6,7 +6,7 @@ const urlRistoranti = 'http://l4com.labforweb.it/backend/web/index.php?r=ristora
 
 const urlRegistrazione = 'http://l4com.labforweb.it/backend/web/test/ws/users/addUser.php';
 
-// TODO url LOGIN
+const urlLogin = 'http://l4com.labforweb.it/backend/web/test/ws/users/checkUser.php';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +15,8 @@ const urlRegistrazione = 'http://l4com.labforweb.it/backend/web/test/ws/users/ad
 export class SharedService{
 
     id : number;
+
+    usrIdLogged : number;
 
     constructor(private http : HttpClient){}
 
@@ -29,6 +31,11 @@ export class SharedService{
     postRegistrazione(oggetto):Observable<any>{
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this.http.post<any>(urlRegistrazione, oggetto, {headers});
+    }
+
+    postLogin(oggetto):Observable<any>{
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.post<any>(urlLogin, oggetto, {headers});
     }
     
 

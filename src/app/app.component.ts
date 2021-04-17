@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { MatDialog} from '@angular/material/dialog';
+import { Component, TemplateRef } from '@angular/core';
 import { SharedService } from 'src/services/sharedService';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -11,11 +12,16 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class AppComponent {
 
-  constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService) { }
+  public modalRef:BsModalRef;
+  public modalNewRef:BsModalRef;
+
+  constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService, private route:Router, private modalService : BsModalService) { }
 
 
   title = 'labforfood';  
 
+  // Registrazione
+  
   regEmail : string;
   regPassword : string;
   regConfirmPassword : string;
@@ -25,6 +31,33 @@ export class AppComponent {
 
   usrRegistrazione : any;
   
+  
+  // Login
+
+  loginEmail : string;
+  loginPassword : string;
+
+  loginCheck : boolean;
+
+  usrLogin : any;
+
+
+  public openModal(login: TemplateRef<any>){
+    this.modalRef = this.modalService.show(login);
+  }
+
+  public openModalRegistrazione(registrazione: TemplateRef<any>){
+    this.modalNewRef = this.modalService.show(registrazione);
+  }
+
+  public closeModal(){
+    this.modalService.hide();
+  }
+
+
+  go(){
+		this.route.navigate(['/ristoranti']); // navigate to other page
+	}
 
   testRegistrati() : boolean{
     if(this.regEmail == "" || this.regEmail == null || this.regEmail == undefined ||
@@ -64,5 +97,40 @@ export class AppComponent {
         }
   })
   }
+
+
+  testLogin() : boolean{
+    if(this.loginEmail == "" || this.loginEmail == null || this.loginEmail == undefined ||
+    this.loginPassword == "" || this.loginPassword == null || this.loginPassword == undefined){
+      this.loginCheck = true;
+      return true;
+    }
+    else {
+      this.loginCheck = false;
+      return false;
+    }
+  }
+
+  postLoginUser(){
+    this.sharedService.postLogin({
+      "email": this.loginEmail,
+      "password": this.loginPassword, 
+        }).subscribe(data =>{
+        this.ngxService.start();
+        console.log(data, 'Dati Login');
+        this.usrLogin = data;
+        if(this.usrLogin.loggedIn){
+          alert(this.usrLogin.message);
+          this.sharedService.usrIdLogged = this.usrLogin.IdUtente;
+          this.ngxService.stop();
+        }else{
+          alert(this.usrLogin.message);
+          this.ngxService.stop();
+          this.modalService.hide();
+          this.go();
+        }
+  })
+  }
+
 
 }

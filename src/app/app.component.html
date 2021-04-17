@@ -18,13 +18,15 @@
               class="fas fa-utensils"></i> Ristoranti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="login" aria-current="page" href="#" data-bs-toggle="modal"
-            data-bs-target="#modalLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a class="nav-link" id="login" (click)=openModal(login)><i class="fas fa-sign-in-alt"></i> Login</a>
+          <!--aria-current="page" href="#" data-bs-toggle="modal"
+            data-bs-target="#modalLogin" -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="registrazione" aria-current="page" href="#" data-bs-toggle="modal"
-            data-bs-target="#modalRegistrazione"><i class="fas fa-user-plus"></i>
+          <a class="nav-link" id="registrazione" (click)=openModalRegistrazione(registrazione)><i class="fas fa-user-plus"></i>
             Registrazione</a>
+          <!--aria-current="page" href="#" data-bs-toggle="modal"
+            data-bs-target="#modalRegistrazione"-->
         </li>
       </ul>
     </div>
@@ -32,43 +34,41 @@
 </nav>
 
 <!-- Modal Login -->
-<div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+<ng-template #login>
+  <div class="modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button (click)=closeModal() type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <label for="FormControlInput1" class="form-label">Email</label>
-          <input type="email" class="form-control" id="FormControlInput1" placeholder="name@example.com">
+          <label for="LoginEmail" class="form-label">Email</label>
+          <input [(ngModel)]="loginEmail" type="email" class="form-control" id="LoginEmail" placeholder="name@example.com">
         </div>
         <div class="mb-3">
-          <label for="FormControlInput2" class="form-label">Password</label>
-          <input type="password" class="form-control" id="FormControlInput2" rows="3">
+          <label for="LoginPassword" class="form-label">Password</label>
+          <input [(ngModel)]="loginPassword" type="password" class="form-control" id="LoginPassword" rows="3">
         </div>
         <div class="mb-3">
           <i class="fas fa-key"></i>&nbsp;<a href="">Ricorda password</a>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal">Chiudi</button>
-        <button type="button" class="btn btn-primary">Login</button>
+        <button (click)=closeModal() type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal">Chiudi</button>
+        <button [disabled]="testLogin()" (click)="postLoginUser()" type="button" class="btn btn-primary">Login</button>
       </div>
     </div>
-  </div>
 </div>
+</ng-template>
 
 <!-- Modal Registrazione -->
-<div class="modal fade" id="modalRegistrazione" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+<ng-template #registrazione>
+  <div class="modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Registrazione</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button (click)=closeModal() type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
@@ -100,13 +100,15 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+        <button (click)=closeModal() type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
         <button [disabled]="testRegistrati()" (click)="postRegistrazioneUser()" type="button" class="btn btn-primary">Registrati</button>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
 
+
+<!-- Carousel -->
 <app-searchbar></app-searchbar>
 
 <!-- Carousel -->
