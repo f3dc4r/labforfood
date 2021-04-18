@@ -17,16 +17,15 @@
           <a class="nav-link" href="#" [routerLink]="['/ristoranti']" routerLinkActive="router-link-active"><i
               class="fas fa-utensils"></i> Ristoranti</a>
         </li>
+        <li *ngIf="sharedService.isLogged" class="nav-item">
+          <a class="nav-link" id="carrello" [routerLink]="['/carrello']"><i class="fas fa-shopping-basket"></i> Carrello</a>
+        </li>
         <li *ngIf="!sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="login" (click)=openModal(login)><i class="fas fa-sign-in-alt"></i> Login</a>
-          <!--aria-current="page" href="#" data-bs-toggle="modal"
-            data-bs-target="#modalLogin" -->
         </li>
         <li *ngIf="!sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="registrazione" (click)=openModalRegistrazione(registrazione)><i class="fas fa-user-plus"></i>
             Registrazione</a>
-          <!--aria-current="page" href="#" data-bs-toggle="modal"
-            data-bs-target="#modalRegistrazione"-->
         </li>
         <li *ngIf="sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="areariservata" href="#" [routerLink]="['/area-riservata']" routerLinkActive="router-link-active"><i class="fas fa-user"></i>
@@ -35,8 +34,6 @@
         <li *ngIf="sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="logout" (click)=logout()>
             Logout <i class="fas fa-sign-out-alt"></i></a>
-          <!--aria-current="page" href="#" data-bs-toggle="modal"
-            data-bs-target="#modalRegistrazione"-->
         </li>
       </ul>
     </div>
@@ -85,23 +82,34 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <label for="FormControlInput6" class="form-label">Nominativo</label>
+          <label for="nominativo" class="form-label">Nominativo</label>
           <input [(ngModel)]="regNominativo" type="text" class="form-control" id="regNominativo" placeholder="Inserisci il tuo nome">
         </div>
         <div class="mb-3">
-          <label for="FormControlInput3" class="form-label">Email</label>
+          <label for="email" class="form-label">Email</label>
           <input [(ngModel)]="regEmail" type="email" class="form-control" id="regEmail" placeholder="name@example.com">
         </div>
+        <div *ngIf="!testEmail()" class="mb-3">
+          <div class="alert alert-danger" role="alert">
+            Hai inserito una email non valida
+        </div>
+        </div>
         <div class="mb-3">
-          <label for="FormControlInput7" class="form-label">Username</label>
+          <label for="username" class="form-label">Username</label>
           <input [(ngModel)]="regUsername" type="text" class="form-control" id="regUsername" placeholder="Inserisci l'username che vuoi utilizzare">
         </div>
         <div class="mb-3">
-          <label for="FormControlInput4" class="form-label">Password</label>
-          <input [(ngModel)]="regPassword" type="password" class="form-control" id="regPassword" rows="3">
+          <label for="password" class="form-label">Password</label>
+          <input [(ngModel)]="regPassword" data-bs-toggle="tooltip" data-bs-placement="top" title="Min 8 caratteri, almeno una lettera maiuscola, una minuscola, un numero e un carattere speciale" type="password" class="form-control" id="regPassword" rows="3">
         </div>
+        <!-- FARE CHECK -->
+        <!--<div *ngIf="!testPassword(regPassword)" class="mb-3">
+          <div class="alert alert-warning" role="alert">
+            Hai inserito una password non valida
+        </div>
+        </div>-->
         <div class="mb-3">
-          <label for="FormControlInput5" class="form-label">Ripeti Password</label>
+          <label for="ripeti-password" class="form-label">Ripeti Password</label>
           <input [disabled]="!regPassword" [(ngModel)]="regConfirmPassword" type="password" class="form-control" id="regConfirmPassword" rows="3">
           <span *ngIf="regConfirmPassword != regPassword"><p style="color: crimson;">Devi riscrivere la password correttamente</p></span>
         </div>
@@ -121,8 +129,10 @@
 </ng-template>
 
 
-<!-- Carousel -->
+<!-- Serachbar -->
+
 <app-searchbar></app-searchbar>
+
 
 <!-- Carousel -->
 

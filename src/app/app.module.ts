@@ -14,6 +14,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, POSITION, SPINNER } from "ngx-ui-loader";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AreaRiservataComponent } from './area-riservata/area-riservata.component';
+import { OrdiniUtenteComponent } from './ordini-utente/ordini-utente.component';
+import { DettaglioOrdiniComponent } from './dettaglio-ordini/dettaglio-ordini.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DettaglioMenuComponent } from './dettaglio-menu/dettaglio-menu.component';
+import { CarrelloComponent } from './carrello/carrello.component';
 
 
 
@@ -36,7 +41,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     RistorantiComponent,
     SearchbarComponent,
     AppPromoteComponent,
-    AreaRiservataComponent
+    AreaRiservataComponent,
+    OrdiniUtenteComponent,
+    DettaglioOrdiniComponent,
+    DettaglioMenuComponent,
+    CarrelloComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +56,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatDialogModule,
     MatButtonModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

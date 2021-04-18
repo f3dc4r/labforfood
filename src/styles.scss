@@ -49,21 +49,21 @@
     cursor: pointer;
 }
 
-#areariservata{
+#logout{
   border: 2px solid #fff;
   border-radius: 20px;
   padding: 0.2rem 1rem!important;
   line-height: 30px;
 }
 
-#areariservata:hover{
+#logout:hover{
   background-color: #b83d0f!important;
   border: 2px solid #b83d0f;
   color: #fff!important;
   cursor: pointer;
 }
 
-#logout{
+#areariservata{
   border: 2px solid #b83d0f;
   background-color: #b83d0f;
   border-radius: 20px;
@@ -71,7 +71,7 @@
   line-height: 30px;
 }
 
-#logout:hover{
+#areariservata:hover{
   background-color: #fff!important;
   border: 2px solid #fff;
   color: #b83d0f!important;
@@ -192,8 +192,21 @@
     box-shadow: 10px 10px 20px #dedede;
   }
 
+  .infoutente{
+    color: #fff;
+    background-color: #b83d0f;
+    margin-top: 2%;
+    padding: 10px;
+    box-shadow: 10px 10px 20px #dedede;
+  }
+
   .menu{
     margin-top: 5%;
+    padding: 10px;
+    box-shadow: 10px 10px 20px #dedede;
+  }
+
+  .dettagliomenu{
     padding: 10px;
     box-shadow: 10px 10px 20px #dedede;
   }
@@ -209,7 +222,7 @@
       width: 100%;
     }
 
-    #logout{
+    #areariservata{
       width: 100%;
     }
 
@@ -217,7 +230,7 @@
       width: 100%;
     }
 
-    #areariservata{
+    #logout{
       width: 100%;
     }
 
@@ -240,6 +253,10 @@
     }
 
     #ristoranti{
+      margin-top:70px;
+    }
+
+    #infoutente{
       margin-top:70px;
     }
 
@@ -307,7 +324,7 @@
       margin: 0 auto;
     }
 
-    #areariservata{
+    #logout{
       width:60%;
       margin: 0 auto;
     }
@@ -319,7 +336,7 @@
       cursor: pointer;
   }
 
-  #areariservata:hover{
+  #logout:hover{
     background-color: #fff!important;
     border: 2px solid #fff;
     color: #b83d0f!important;
@@ -333,7 +350,7 @@
     cursor: pointer;
   }
 
-  #logout:hover{
+  #areariservata:hover{
     background-color: #b83d0f!important;
     border: 2px solid #fff;
     color: #fff!important;

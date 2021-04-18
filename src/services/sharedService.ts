@@ -16,6 +16,10 @@ export class SharedService{
 
     id : number;
 
+    idOrdine : number;
+
+    nomeRistorante : string;
+
     usrIdLogged : number;
 
     isLogged : boolean = false;
@@ -65,8 +69,13 @@ export class SharedService{
             return this.http.get("http://l4com.labforweb.it/backend/web/index.php?r=utenti/profile&id_usr=" + this.usrIdLogged);
     }
     
+    getOrdiniUtente():Observable<any>{
+        return this.http.get('http://l4com.labforweb.it/backend/web/index.php?r=utenti/ordini&id_usr=7'); //INSERIRE this.usrIdLogged
+    }
 
-    // TODO POST LOGIN
+    getDettaglioOrdine():Observable<any>{
+        return this.http.get('http://l4com.labforweb.it/backend/web/index.php?r=utenti/ordine&IdOrdine=' + this.idOrdine);
+    }
     
     
     // getDati():Observable<any>{

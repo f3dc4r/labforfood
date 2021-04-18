@@ -1,0 +1,38 @@
+<div class="container" id="ristoranti">
+    <div class="col-sm" style="font-size: small;">
+        <div class="container" id="ristoranti">
+
+            <div class="row align-items-center ristoranti" >
+                <div class="col-sm" style="font-size: small;"><button [routerLink]="['/area-riservata']" class="btn" style="background-color: #b83d0f; color: #fff;">Back</button></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+            </div>
+            
+            
+            <div class="row align-items-center ristoranti" >
+                <div class="col-sm" style="font-size: small;">ID Ordine</div>
+                <div class="col-sm" style="font-size: small;">Data Ordine</div>
+                <div class="col-sm" style="font-size: small;">Descrizione</div>
+                <div class="col-sm" style="font-size: small;">Ristorante</div>
+                <div class="col-sm" style="font-size: small;">Prodotto</div>
+                <div class="col-sm" style="font-size: small;">Unità</div>
+                <div class="col-sm" style="font-size: small;">Prezzo</div>
+            </div>
+
+            <div class="row align-items-center ristoranti" *ngFor="let elenco of dettaglioList">
+                <div class="col-sm" style="font-size: small;">{{elenco.IdOrdine}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.DataOrdine}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.Descrizione}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.Ristorante}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.Prodotto}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.Unita}}</div>
+                <div class="col-sm" style="font-size: small;">€ {{elenco.Prezzo}}</div>
+                
+            </div>
+        </div>
+    </div>
+</div>

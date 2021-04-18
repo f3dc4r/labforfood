@@ -1,0 +1,24 @@
+<div class="container" id="ristoranti">
+    <div class="col-sm" style="font-size: small;">
+        <div class="container" id="ristoranti">
+
+            <div class="row align-items-center ristoranti" >
+                <div class="col-sm" style="font-size: small;">Cod. Ordine</div>
+                <div class="col-sm" style="font-size: small;">Logo</div>
+                <div class="col-sm" style="font-size: small;">Ristorante</div>
+                <div class="col-sm" style="font-size: small;">Costi di consegna</div>
+                <div class="col-sm" style="font-size: small;">Indirizzo Consegna</div>
+                <div class="col-sm" style="font-size: small;"></div>
+            </div>
+
+            <div class="row align-items-center ristoranti" *ngFor="let elenco of usrOrdini">
+                <div class="col-sm" style="font-size: small;"><h5>{{elenco.IdOrdine}}</h5></div>
+                <div class="col-sm"><img src="http://l4com.labforweb.it/backend/web/img/ristoranti/{{elenco.Logo}}" alt="{{elenco.Logo}}"></div>
+                <div class="col-sm"><h5>{{elenco.Ristorante}}</h5></div>
+                <div class="col-sm" style="font-size: small;"><i class="fas fa-coins"></i> € {{elenco.CostiConsegna}}</div>
+                <div class="col-sm" style="font-size: small;"><i class="fas fa-map-marked-alt"></i> {{elenco.IndirizzoConsegna}}</div>
+                <div class="col-sm" style="font-size: small;"><button [routerLink]="['/dettaglio-ordini']" (click)="dettaglioOrdine(elenco.IdOrdine)" class="btn" style="background-color: #b83d0f; color: #fff;">Vedi ordine</button></div>
+            </div>
+        </div>
+    </div>
+</div>

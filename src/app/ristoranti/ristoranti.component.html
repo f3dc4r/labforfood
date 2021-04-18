@@ -1,26 +1,3 @@
-<!-- <div class="container-fluid" id="app-promote">
-    <div class="row">
-        <div *ngFor="let elenco of ristorantiList" class="card ristoranti" style="width: 15rem;">
-            <img src="http://l4com.labforweb.it/backend/web/img/ristoranti/{{elenco.Logo}}" class="card-img-center"
-                alt="{{elenco.Logo}}">
-            <div class="card-body">
-                <h5 class="card-title">{{elenco.Ristorante}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-    </div>
-</div> -->
-
 <div class="container" id="ristoranti">
     <div class="row align-items-center ristoranti" *ngFor="let elenco of ristorantiList">
         <div class="col-sm"><img src="http://l4com.labforweb.it/backend/web/img/ristoranti/{{elenco.Logo}}" alt="{{elenco.Logo}}"></div>
@@ -28,24 +5,6 @@
         <div class="col-sm" style="font-size: small;"><i class="fas fa-coins"></i> Costi di consegna: € {{elenco.CostiConsegna}}</div>
         <div class="col-sm" style="font-size: small;"><i class="far fa-clock"></i> Tempi di consegna: {{elenco.TempiConsegna}} min.</div>
         <div class="col-sm" style="font-size: small;"><i class="fas fa-utensils"></i> Ordine Minimo: € {{elenco.OrdineMinimo}}</div>
-        <div class="col-sm" style="font-size: small;"><button class="btn" (click)="selezionaRistorante(elenco.IdRistorante)" style="background-color: #b83d0f; color: #fff;" data-bs-toggle="offcanvas" href="#menuOffcanvas" role="button" aria-controls="offcanvas">Menu</button></div>
+        <div class="col-sm" style="font-size: small;"><button class="btn" [routerLink]="['/dettaglio-menu']" (click)="selezionaRistorante(elenco.IdRistorante)" style="background-color: #b83d0f; color: #fff;" data-bs-toggle="offcanvas" href="#menuOffcanvas" role="button" aria-controls="offcanvas">Menu</button></div>
     </div>
 </div>
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="menuOffcanvas" aria-labelledby="offcanvasMenu">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasMenu">Menu</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-     <div class="container" id="menu">
-        <div><h6>Menu</h6></div>
-        <div class="row align-items-center menu" *ngFor="let prodotti of menuList"> 
-            <div class="col-sm">{{prodotti.Prodotto}}</div>
-            <div class="col-sm" style="font-size: small;">Descrizione: {{prodotti.Descrizione}}</div>
-            <div class="col-sm" style="font-size: small;"><i class="fas fa-coins"></i> Prezzo: <h6>€ {{prodotti.Prezzo}}</h6></div>
-            <div class="col-sm" style="font-size: small;"><button class="btn" (click)="selezionaRistorante(elenco.IdRistorante)" style="background-color: #b83d0f; color: #fff; width: 100%;" >Aggiungi</button></div>
-        </div>
-    </div>
-    </div>
-  </div>

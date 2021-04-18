@@ -1,1 +1,10 @@
-<p>area-riservata works!</p>
+<div class="container" id="infoutente">
+    <div class="row align-items-center infoutente">
+        <div class="col-sm"><h5>Ciao, {{sharedService.areaRiservata.nominativo}}</h5></div>
+        <div class="col-sm"><span style="font-size: small;">(ID Utente {{sharedService.areaRiservata.IdUtente}})</span></div>
+        <div class="col-sm"><span style="font-size: small;">Email: {{sharedService.areaRiservata.email}}</span></div>
+        <div class="col-sm"><span style="font-size: small;">Utente dal: {{sharedService.areaRiservata.DataReg}}</span></div>
+    </div>
+</div>
+
+<app-ordini-utente></app-ordini-utente>

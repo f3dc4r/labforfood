@@ -1,0 +1,40 @@
+<div class="container" id="dettagliomenu">
+    <div class="row align-items-center dettagliomenu">
+        <div class="col-sm" style="font-size: small;"><button [routerLink]="['/ristoranti']" class="btn"
+                style="background-color: #b83d0f; color: #fff;">Back</button></div>
+        <div class="col-sm" style="font-size: small;"></div>
+        <div class="col-sm" style="font-size: small;"></div>
+        <div class="col-sm" style="font-size: small;"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-4"></div>
+        <div class="col-4"><h1>Menu Ristorante</h1></div>
+        <div class="col-4"></div>
+    </div>
+</div>
+
+<div class="container" id="dettagliomenu">
+    <div class="row align-items-center dettagliomenu">
+        <div class="col-sm" style="font-size: small;">Menu</div>
+        <div class="col-sm" style="font-size: small;">Descrizione</div>
+        <div class="col-sm" style="font-size: small;">Prezzo</div>
+        <div class="col-sm" style="font-size: small;"></div>
+    </div>
+</div>
+
+
+<div class="container" id="dettagliomenu">
+    <div class="row align-items-center dettagliomenu" *ngFor="let prodotti of menuList">
+        <div class="col-sm">{{prodotti.Prodotto}}</div>
+        <div class="col-sm" style="font-size: small;">{{prodotti.Descrizione}}</div>
+        <div class="col-sm" style="font-size: small;"><h6><i class="fas fa-coins"></i> € {{prodotti.Prezzo}}
+            </h6>
+        </div>
+        <div class="col-sm" style="font-size: small;"><button class="btn"
+                (click)="addProdotto(prodotti.IdProdotto, prodotti.Prodotto)"
+                style="background-color: #b83d0f; color: #fff;">Aggiungi</button></div>
+    </div>
+</div>

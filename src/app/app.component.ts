@@ -15,8 +15,12 @@ export class AppComponent {
   public modalRef:BsModalRef;
   public modalNewRef:BsModalRef;
 
+
   constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService, private route:Router, private modalService : BsModalService) { }
 
+  RegExMail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+
+  RegExPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/; //DA CHIEDERE
 
   title = 'labforfood';  
 
@@ -80,6 +84,24 @@ export class AppComponent {
   }
 
   
+  testEmail(){
+    if (this.regEmail == null || this.regEmail == undefined || this.regEmail == ""){
+      return true;
+    }
+    return this.RegExMail.test(this.regEmail);
+  }
+
+// DA CHIEDERE
+
+   testPassword(e){
+    if (e == null || e == undefined || e == ""){
+      return true;
+    }else {
+      return this.RegExPassword.test(e);
+    }
+  }
+
+
 
 
   testRegistrati() : boolean{
