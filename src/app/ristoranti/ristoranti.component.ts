@@ -16,6 +16,7 @@ export class RistorantiComponent implements OnInit {
   constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService) { }
 
   ngOnInit(): void {
+    this.sharedService.sessionStorageGetItem();
     this.getServerRistoranti();
   }
 

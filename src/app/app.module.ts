@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, POSITION, SPINNER } from "ngx-ui-loader";
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AreaRiservataComponent } from './area-riservata/area-riservata.component';
 
 
 
@@ -34,7 +35,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppComponent,
     RistorantiComponent,
     SearchbarComponent,
-    AppPromoteComponent
+    AppPromoteComponent,
+    AreaRiservataComponent
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,30 @@ export class SharedService{
 
     usrIdLogged : number;
 
+    isLogged : boolean = false;
+
+    // Session 
+
+    statusSession : string;
+
+
+     // Area Riservata
+
+    areaRiservata : any;
+
+    userName : string;
+
     constructor(private http : HttpClient){}
+
+    sessionStorageGetItem(){
+        this.statusSession = sessionStorage.getItem('LoggedIn');
+        if (this.statusSession == "true"){
+          this.isLogged = true;
+        } else if (this.statusSession == "false" || this.statusSession == null || this.statusSession == undefined) {
+          this.isLogged = false;
+        }
+        
+      }
 
     getRistoranti():Observable<any>{
         return this.http.get(urlRistoranti);
@@ -36,6 +59,10 @@ export class SharedService{
     postLogin(oggetto):Observable<any>{
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this.http.post<any>(urlLogin, oggetto, {headers});
+    }
+
+    getAreaRiservata():Observable<any>{
+            return this.http.get("http://l4com.labforweb.it/backend/web/index.php?r=utenti/profile&id_usr=" + this.usrIdLogged);
     }
     
 

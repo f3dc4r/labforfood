@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/services/sharedService';
 
 @Component({
   selector: 'app-app-promote',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppPromoteComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sharedService : SharedService) { }
 
   ngOnInit(): void {
+    this.sharedService.sessionStorageGetItem();
   }
 
 }

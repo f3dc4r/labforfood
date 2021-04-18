@@ -31,6 +31,7 @@
     background-color: #b83d0f!important;
     border: 2px solid #b83d0f;
     color: #fff!important;
+    cursor: pointer;
 }
 
 #registrazione{
@@ -45,7 +46,39 @@
     background-color: #fff!important;
     border: 2px solid #fff;
     color: #b83d0f!important;
+    cursor: pointer;
 }
+
+#areariservata{
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 0.2rem 1rem!important;
+  line-height: 30px;
+}
+
+#areariservata:hover{
+  background-color: #b83d0f!important;
+  border: 2px solid #b83d0f;
+  color: #fff!important;
+  cursor: pointer;
+}
+
+#logout{
+  border: 2px solid #b83d0f;
+  background-color: #b83d0f;
+  border-radius: 20px;
+  padding: 0.2rem 1rem!important;
+  line-height: 30px;
+}
+
+#logout:hover{
+  background-color: #fff!important;
+  border: 2px solid #fff;
+  color: #b83d0f!important;
+  cursor: pointer;
+}
+
+
 
 #app-promote .card{
   background-color: #b83d0f;
@@ -176,7 +209,15 @@
       width: 100%;
     }
 
+    #logout{
+      width: 100%;
+    }
+
     #login{
+      width: 100%;
+    }
+
+    #areariservata{
       width: 100%;
     }
 
@@ -253,7 +294,20 @@
       color: #b83d0f!important;
     }
 
+    #logout{
+      width:60%;
+      margin: 5px auto;
+      border: 2px solid #fff;
+      background-color: #fff;
+      color: #b83d0f!important;
+    }
+
     #login{
+      width:60%;
+      margin: 0 auto;
+    }
+
+    #areariservata{
       width:60%;
       margin: 0 auto;
     }
@@ -262,15 +316,33 @@
       background-color: #fff!important;
       border: 2px solid #fff;
       color: #b83d0f!important;
+      cursor: pointer;
   }
-  
-  }
-  
+
+  #areariservata:hover{
+    background-color: #fff!important;
+    border: 2px solid #fff;
+    color: #b83d0f!important;
+    cursor: pointer;
+}
+ 
   #registrazione:hover{
-      background-color: #b83d0f!important;
-      border: 2px solid #fff;
-      color: #fff!important;
+    background-color: #b83d0f!important;
+    border: 2px solid #fff;
+    color: #fff!important;
+    cursor: pointer;
   }
+
+  #logout:hover{
+    background-color: #b83d0f!important;
+    border: 2px solid #fff;
+    color: #fff!important;
+    cursor: pointer;
+  }
+
+  }
+  
+ 
 
   
 

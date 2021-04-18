@@ -34,12 +34,16 @@ export class AppComponent {
   
   // Login
 
-  loginEmail : string;
+  loginUsername : string;
   loginPassword : string;
 
   loginCheck : boolean;
 
   usrLogin : any;
+
+  errorUserMessage : boolean = false;
+
+  errorMessage : string;
 
 
   public openModal(login: TemplateRef<any>){
@@ -55,9 +59,28 @@ export class AppComponent {
   }
 
 
-  go(){
-		this.route.navigate(['/ristoranti']); // navigate to other page
+  goAreaRiservata(){
+		this.route.navigate(['/area-riservata']); // navigate to other page
 	}
+
+  goRistoranti(){
+    this.route.navigate(['/ristoranti']);
+  }
+
+
+  sessionStorageSetItem(){
+    if (this.sharedService.isLogged){
+      this.sharedService.statusSession = "true";
+      sessionStorage.setItem('LoggedIn', this.sharedService.statusSession);
+    } else {
+      this.sharedService.statusSession = "false";
+      sessionStorage.setItem('LoggedIn', this.sharedService.statusSession);
+    }
+    
+  }
+
+  
+
 
   testRegistrati() : boolean{
     if(this.regEmail == "" || this.regEmail == null || this.regEmail == undefined ||
@@ -100,36 +123,51 @@ export class AppComponent {
 
 
   testLogin() : boolean{
-    if(this.loginEmail == "" || this.loginEmail == null || this.loginEmail == undefined ||
+    if(this.loginUsername == "" || this.loginUsername == null || this.loginUsername == undefined ||
     this.loginPassword == "" || this.loginPassword == null || this.loginPassword == undefined){
       this.loginCheck = true;
       return true;
     }
     else {
       this.loginCheck = false;
-      return false;
     }
   }
 
   postLoginUser(){
     this.sharedService.postLogin({
-      "email": this.loginEmail,
+      "username": this.loginUsername,
       "password": this.loginPassword, 
         }).subscribe(data =>{
-        this.ngxService.start();
         console.log(data, 'Dati Login');
         this.usrLogin = data;
         if(this.usrLogin.loggedIn){
-          alert(this.usrLogin.message);
+          this.ngxService.start();
           this.sharedService.usrIdLogged = this.usrLogin.IdUtente;
+          this.sharedService.isLogged = this.usrLogin.loggedIn;
+          this.errorUserMessage = false;
+          this.sessionStorageSetItem();
+          this.modalService.hide();
+          this.goAreaRiservata();
+          this.loginUsername = "";
+          this.loginPassword = "";
           this.ngxService.stop();
         }else{
-          alert(this.usrLogin.message);
+          this.errorMessage = this.usrLogin.message;
+          this.sharedService.isLogged = this.usrLogin.loggedIn;
+          this.errorUserMessage = true;
+          this.sessionStorageSetItem();
+          this.loginUsername = "";
+          this.loginPassword = "";
           this.ngxService.stop();
-          this.modalService.hide();
-          this.go();
+          setTimeout(()=>{ this.errorUserMessage = false;}, 2000);
         }
   })
+  }
+
+  logout(){
+    this.sharedService.isLogged = false;
+    this.sessionStorageSetItem();
+    this.goRistoranti();
   }
 
 
