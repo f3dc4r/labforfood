@@ -13,12 +13,12 @@
         <h5 class="text-white py-2">Menu</h5>
       </div>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li *ngIf="sharedService.isLogged" class="nav-item">
+          <a class="nav-link" id="carrello" [routerLink]="['/carrello']"><i class="fas fa-shopping-basket"></i> Carrello</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#" [routerLink]="['/ristoranti']" routerLinkActive="router-link-active"><i
               class="fas fa-utensils"></i> Ristoranti</a>
-        </li>
-        <li *ngIf="sharedService.isLogged" class="nav-item">
-          <a class="nav-link" id="carrello" [routerLink]="['/carrello']"><i class="fas fa-shopping-basket"></i> Carrello</a>
         </li>
         <li *ngIf="!sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="login" (click)=openModal(login)><i class="fas fa-sign-in-alt"></i> Login</a>
@@ -66,7 +66,7 @@
       </div>
       <div class="modal-footer">
         <button (click)=closeModal() type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal">Chiudi</button>
-        <button [disabled]="testLogin()" (click)="postLoginUser()" type="button" class="btn btn-primary">Login</button>
+        <button [disabled]="testLogin()" (click)="postLoginUser()" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff;">Login</button>
       </div>
     </div>
 </div>
@@ -122,7 +122,7 @@
       </div>
       <div class="modal-footer">
         <button (click)=closeModal() type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-        <button [disabled]="testRegistrati()" (click)="postRegistrazioneUser()" type="button" class="btn btn-primary">Registrati</button>
+        <button [disabled]="testRegistrati()" (click)="postRegistrazioneUser()" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff;">Registrati</button>
       </div>
     </div>
   </div>

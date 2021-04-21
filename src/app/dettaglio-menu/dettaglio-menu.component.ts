@@ -14,21 +14,32 @@ export class DettaglioMenuComponent implements OnInit {
 
   labelRistorante : any;
 
+  message : string;
+
   constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getServerMenu();
+    this.messaggioTooltip();
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
+  openSnackBar(prodotto: string, prezzo: string) {
+    this._snackBar.open(prodotto, prezzo, {
       duration: 2000, horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
   }
 
-  addProdotto(id, prodotto){
-    this.openSnackBar(id, prodotto);
+  messaggioTooltip(){
+    if (this.sharedService.isLogged){
+      return this.message = "Aggiungi questo prodotto al carrello";
+    } else if (!this.sharedService.isLogged){
+      return this.message = "Devi prima eseguire il login per aggiungere prodotti";
+    }
+  }
+
+  addProdotto(prodotto, prezzo){
+    this.openSnackBar("Hai aggiunto al carrello: "+ prodotto, "Prezzo: € " + prezzo);
   }
 
   getServerMenu(){
