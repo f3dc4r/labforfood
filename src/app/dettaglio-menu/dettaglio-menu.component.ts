@@ -94,7 +94,7 @@ export class DettaglioMenuComponent implements OnInit {
     
     setTimeout(()=>{ this.addProductMessage = false;}, 2000);
 
-    setTimeout(()=>{ this.modalService.hide();}, 3000);
+    setTimeout(()=>{ this.modalService.hide();}, 1000);
     
    /* if (this.arrProdotti.length == 0|| this.arrProdotti == null || this.arrProdotti == undefined || !this.alreadyInserted){
       this.Unita = 1;
