@@ -14,11 +14,16 @@ const urlLogin = 'http://l4com.labforweb.it/backend/web/test/ws/users/checkUser.
 
 export class SharedService{
 
-    id : number;
+    id : number = null;
 
     idOrdine : number;
 
+
+    idRistorante : number;
     nomeRistorante : string;
+    costiConsegna : number;
+    ordineMinimo : number;
+    tempiConsegna : number;
 
     usrIdLogged : number;
 

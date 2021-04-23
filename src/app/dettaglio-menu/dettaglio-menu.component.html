@@ -10,9 +10,9 @@
 
 <div class="container">
     <div class="row align-items-center">
-        <div class="col-4"></div>
-        <div class="col-4"><h1>Menu</h1></div>
-        <div class="col-4"></div>
+        <div class="col-3"></div>
+        <div class="col-6"><h1>Menu {{labelRistorante}}</h1></div>
+        <div class="col-3"></div>
     </div>
 </div>
 
@@ -34,9 +34,43 @@
             </h6>
         </div>
         <div class="col-sm" style="font-size: small;" data-bs-toggle="tooltip" data-bs-placement="top" 
-        title="{{message}}"><button class="btn"
-                (click)="addProdotto(prodotti.Prodotto, prodotti.Prezzo)"
+        title="{{message}}"><button class="btn" id="addproduct"
+                (click)="openModal(addproduct)"
                 [disabled]="!sharedService.isLogged"
                 style="background-color: #b83d0f; color: #fff;">Aggiungi</button></div>
+                <!-- Modal Aggiungi Prodotto -->
+<ng-template #addproduct>
+    <div class="modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Aggiungi Prodotto</h5>
+          <button (click)=closeModal() type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+           
+          </div>
+          <div class="mb-3">
+            <label for="quantita" class="form-label">Quantita'</label>
+            <input [(ngModel)]="quantita" type="number" class="form-control" id="quantita">
+          </div>
+          <div class="mb-3">
+           
+          </div>
+    
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal">Chiudi</button>
+          <button (click)="addProdotto(prodotti.Prodotto, prodotti.Prezzo, prodotti.IdRistorante, prodotti.Ristorante, prodotti.IdProdotto)" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff;">Aggiungi al carrello</button>
+        </div>
+        <div *ngIf="addProductMessage" class="alert alert-success" role="alert">
+            Prodotto aggiunto
+        </div>
+      </div>
+  </div>
+  </ng-template>
     </div>
 </div>
+
+<!--addProdotto(prodotti.Prodotto, prodotti.Prezzo, prodotti.IdRistorante, prodotti.Ristorante, prodotti.IdProdotto)-->
+

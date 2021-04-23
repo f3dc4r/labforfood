@@ -5,6 +5,8 @@
         <div class="col-sm" style="font-size: small;"><i class="fas fa-coins"></i> Costi di consegna: € {{elenco.CostiConsegna}}</div>
         <div class="col-sm" style="font-size: small;"><i class="far fa-clock"></i> Tempi di consegna: {{elenco.TempiConsegna}} min.</div>
         <div class="col-sm" style="font-size: small;"><i class="fas fa-utensils"></i> Ordine Minimo: € {{elenco.OrdineMinimo}}</div>
-        <div class="col-sm" style="font-size: small;"><button class="btn" [routerLink]="['/dettaglio-menu']" (click)="selezionaRistorante(elenco.IdRistorante)" style="background-color: #b83d0f; color: #fff;" data-bs-toggle="offcanvas" href="#menuOffcanvas" role="button" aria-controls="offcanvas">Menu</button></div>
+        <div class="col-sm" style="font-size: small;"><button class="btn" [routerLink]="['/dettaglio-menu']" (click)="selezionaRistorante(elenco.IdRistorante)" style="background-color: #b83d0f; color: #fff;">Menu</button></div>
     </div>
 </div>
+
+<!--data-bs-toggle="offcanvas" href="#menuOffcanvas" role="button" aria-controls="offcanvas"-->
