@@ -12,39 +12,43 @@ import { SharedService } from 'src/services/sharedService';
 })
 export class DettaglioMenuComponent implements OnInit {
 
-  public modalRef:BsModalRef;
-  public modalNewRef:BsModalRef;
+  public modalRef: BsModalRef;
+  public modalNewRef: BsModalRef;
 
-  addProductMessage : boolean = false;
+  addProductMessage: boolean = false;
 
-  menuList : any;
+  menuList: any;
 
-  labelRistorante : any;
+  labelRistorante: any;
 
-  message : string;
+  message: string;
 
   // Prodotti
 
-  quantita : number = 0;
+  indiceArr: any;
 
-  IdRistorante : number;
+  quantita: number = 0;
+
+  IdRistorante: number;
   P_utente: number;
-  IdProdotto : number;
-  Prezzo : number;
-  Prodotto : string;
-  Unita : number;
+  IdProdotto: number;
+  Prezzo: number;
+  Prodotto: string;
+  Unita: number;
   totale: number;
 
-  nomeRistorante : string;
+  nomeRistorante: string;
 
-  alreadyInserted : boolean = false;
+  alreadyInserted: boolean = false;
 
-  arrProdotti : Array<any> = [];
+  arrProdotti: Array<any> = [];
 
-  carrelloprodotti : Array<any> = [];
+  carrelloprodotti: Array<any> = [];
+
+  badgeCarrello : number;
 
 
-  constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService, private _snackBar: MatSnackBar, private modalService : BsModalService, private route:Router) { }
+  constructor(public sharedService: SharedService, public ngxService: NgxUiLoaderService, private _snackBar: MatSnackBar, private modalService: BsModalService, private route: Router) { }
 
   ngOnInit(): void {
     this.getServerMenu();
@@ -58,114 +62,113 @@ export class DettaglioMenuComponent implements OnInit {
     });
   }
 
-  public openModal(addproduct: TemplateRef<any>){
+  public openModal(addproduct: TemplateRef<any>) {
     this.modalRef = this.modalService.show(addproduct);
   }
 
-  public closeModal(){
+  public closeModal() {
     this.modalService.hide();
   }
 
-  goListaMenu(){
-		this.route.navigate(['/dettaglio-menu']); // navigate to other page
-	}
+  goListaMenu() {
+    this.route.navigate(['/dettaglio-menu']); // navigate to other page
+  }
 
-  messaggioTooltip(){
-    if (this.sharedService.isLogged){
+  messaggioTooltip() {
+    if (this.sharedService.isLogged) {
       return this.message = "Aggiungi questo prodotto al carrello";
-    } else if (!this.sharedService.isLogged){
+    } else if (!this.sharedService.isLogged) {
       return this.message = "Devi prima eseguire il login per aggiungere prodotti";
     }
   }
 
-  addProdotto( product, price, IdRestaurant, Restaurant, IdProduct){
-    
+  addQty(){
+    if(this.quantita < 99){
+      this.quantita++;
+    }else{
+      return 0;
+    }
+  }
+
+  delQty(){
+    if(this.quantita > 0){
+      return this.quantita--;
+    }else if(this.quantita === 0){
+        return 0;
+      }
+
+  }
+
+  isEmptyQuantity(){
+    if (this.quantita === 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  addProdotto(product, price, IdRestaurant, Restaurant, IdProduct, ) {
     this.P_utente = this.sharedService.areaRiservata.IdUtente;
+    console.log(this.P_utente);
     this.nomeRistorante = Restaurant;
     this.IdRistorante = IdRestaurant;
     this.IdProdotto = IdProduct;
-    this.Prezzo = price;
+    this.Prezzo = parseFloat(price);
     this.Prodotto = product;
     this.Unita = this.quantita;
-    this.arrProdotti.push([{IdRistorante: this.IdRistorante, P_utente : this.P_utente, IdProdotto : this.IdProdotto, Prezzo : this.Prezzo, Prodotto : this.Prodotto, Unita : this.Unita, totale : this.Prezzo * this.Unita}]);
-    console.log(this.arrProdotti);
-    this.addProductMessage = true;
-    this.quantita = 0;
-    
-    setTimeout(()=>{ this.addProductMessage = false;}, 2000);
+    this.totale = (this.Prezzo * this.Unita);
 
-    setTimeout(()=>{ this.modalService.hide();}, 3000);
-    
-   /* if (this.arrProdotti.length == 0|| this.arrProdotti == null || this.arrProdotti == undefined || !this.alreadyInserted){
-      this.Unita = 1;
-      this.arrProdotti.push([{IdRistorante: this.IdRistorante, P_utente : this.P_utente, IdProdotto : this.IdProdotto, Prezzo : this.Prezzo, Prodotto : this.Prodotto, Unita : this.Unita, totale : this.Prezzo * this.Unita}]);
-      this.carrelloprodotti.push(this.arrProdotti);
-      console.log(this.arrProdotti, "DENTRO IF");
-      this.alreadyInserted = true;
-    }
-    else if (this.isInserted(this.IdProdotto, this.arrProdotti)){
-      this.carrelloprodotti = this.arrProdotti.find((o, i) =>{
-        if (o.IdProdotto === IdProduct) {
-          this.Unita = o.Unita + 1;
-          this.arrProdotti[i] = {IdRistorante: this.IdRistorante, P_utente : this.P_utente, IdProdotto : this.IdProdotto, Prezzo : this.Prezzo, Prodotto : this.Prodotto, Unita : this.Unita, totale : this.Prezzo * this.Unita};
-          //return true;
-        }
-      });
-    }
-    else {
-      this.Unita = 1;
-      this.arrProdotti.push([{IdRistorante: this.IdRistorante, P_utente : this.P_utente, IdProdotto : this.IdProdotto, Prezzo : this.Prezzo, Prodotto : this.Prodotto, Unita : this.Unita, totale : this.Prezzo * this.Unita}]);
-      this.carrelloprodotti.push(this.arrProdotti);
-    }
-    console.log(this.arrProdotti.length);
-    console.log(this.carrelloprodotti)*/
-  }
+    console.log(this.arrProdotti.length, "lunghezza array arrProdotti" );
 
-  /*isInserted(namekey, myArray){
-    for (var i=0; i<myArray.length; i++)
-    {
-      if (myArray[i].IdRistorante === namekey){
-        return this.alreadyInserted = true;
+
+    if (this.arrProdotti.length == 0) {
+      this.arrProdotti.push({ IdRistorante: this.IdRistorante, P_utente: this.P_utente, IdProdotto: this.IdProdotto, Prezzo: this.Prezzo, Prodotto: this.Prodotto, Unita: this.Unita, totale: this.totale });
+      console.log(this.arrProdotti, "arr Prodotto nuovo prodotto");
+      this.addProductMessage = true;
+      setTimeout(() => { this.addProductMessage = false; }, 2000);
+      setTimeout(() => { this.modalService.hide(); }, 1000);
+      this.quantita = 0;
+      this.badgeCarrello = this.arrProdotti.length;
+
+    } else {
+
+      this.indiceArr = this.arrProdotti.findIndex(((obj: any) => obj.IdProdotto === this.IdProdotto));
+      console.log(this.indiceArr, "valore indiceArr");
+      
+      if (this.indiceArr !== -1 || this.indiceArr === undefined || this.indiceArr === null) {
+        this.arrProdotti[this.indiceArr].Unita = this.arrProdotti[this.indiceArr].Unita + this.Unita;
+        console.log(this.arrProdotti, "arr Prodotto modifica unità");
+        this.addProductMessage = true;
+        setTimeout(() => { this.addProductMessage = false; }, 2000);
+        setTimeout(() => { this.modalService.hide(); }, 1000);
+        this.quantita = 0;
+        this.badgeCarrello = this.arrProdotti.length;
+
+      } else {
+        this.arrProdotti.push({ IdRistorante: this.IdRistorante, P_utente: this.P_utente, IdProdotto: this.IdProdotto, Prezzo: this.Prezzo, Prodotto: this.Prodotto, Unita: this.Unita, totale: this.totale });
+        console.log(this.arrProdotti, "arrProdotti nuovo prodotto else");
+        this.addProductMessage = true;
+        setTimeout(() => { this.addProductMessage = false; }, 2000);
+        setTimeout(() => { this.modalService.hide(); }, 1000);
+        this.quantita = 0;
+        this.badgeCarrello = this.arrProdotti.length;
+
       }
     }
-  }*/
+  }
 
-//   function search(nameKey, myArray){
-//     for (var i=0; i < myArray.length; i++) {
-//         if (myArray[i].name === nameKey) {
-//             return myArray[i];
-//         }
-//     }
-// }
-
-// var array = [
-//     { name:"string 1", value:"this", other: "that" },
-//     { name:"string 2", value:"this", other: "that" }
-// ];
-
-// var resultObject = search("string 1", array);
+  checkCarrello(){
+    if (this.arrProdotti.length == 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
-
-
-
-
-//   let arr = [
-//     { name:"string 1", value:"this", other: "that" },
-//     { name:"string 2", value:"this", other: "that" }
-// ];
-
-// let obj = arr.find((o, i) => {
-//     if (o.name === 'string 1') {
-//         arr[i] = { name: 'new string', value: 'this', other: 'that' };
-//         return true; // stop searching
-//     }
-// });
-
-
-  getServerMenu(){
+  getServerMenu() {
     this.ngxService.start();
-    this.sharedService.getMenu().subscribe(menu=>{
+    this.sharedService.getMenu().subscribe(menu => {
       console.log(menu, 'MENU');
       this.menuList = menu;
       this.labelRistorante = this.menuList[0].Ristorante;
@@ -176,3 +179,24 @@ export class DettaglioMenuComponent implements OnInit {
 
 
 }
+
+
+// TODO
+/*
+
+Visualizzare il carrello
+Passare i valori al componente carrello
+Calcolare il totale
+Applicare gli sconti
+Ricalcolare il totale
+Schermata indirizzo
+Schermata riassunto ordine
+Pagamento --> Inserimento Ordine --> Fare post
+
+
+Se vado al carrello posso tornare al detaglio ordine, ma non posso tornare alla lista ristoranti
+Se clicco su ristorante Apro modal che mi dice se voglio svuotare il carrello e ordinare da un altro ristorante oppure tornare al mio dettaglio ordine 
+
+Cambiare le immagini di sfondo (una in particolare)
+
+*/

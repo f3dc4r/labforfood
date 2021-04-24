@@ -11,6 +11,7 @@ export class DettaglioOrdiniComponent implements OnInit {
 
   dettaglioList : any;
   
+  totaleOrdine : number;
 
   constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService) { }
 
@@ -23,8 +24,17 @@ export class DettaglioOrdiniComponent implements OnInit {
     this.sharedService.getDettaglioOrdine().subscribe(data=>{
       console.log(data, 'MENU');
       this.dettaglioList = data;
+      this.calcoloTotaleOrdine();
       this.ngxService.stop();
     })
+  }
+
+  calcoloTotaleOrdine(){
+    console.log(this.dettaglioList);
+    this.totaleOrdine = this.dettaglioList.reduce(function (total, currentValue) {
+      return total + (currentValue.Prezzo* currentValue.Unita);
+  }, 0);
+  console.log(this.totaleOrdine);
   }
 
 }

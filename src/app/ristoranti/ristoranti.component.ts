@@ -10,7 +10,9 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class RistorantiComponent implements OnInit {
 
   ristorantiList : any;
-
+  
+  ristoranteSelezionato: any;
+  indiceRistorante : any;
 
   constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService) { }
 
@@ -31,19 +33,20 @@ export class RistorantiComponent implements OnInit {
       this.ngxService.stop();
     })
   }
-/*
-  IdRistorante: number
-P_utente: number
-IdProdotto: number
-Prezzo: number (float)
-Prodotto: string
-Unita: number
-totale: number (float)
-*/
-
 
   selezionaRistorante(e){
     this.sharedService.id = e;
+    this.indiceRistorante = this.ristorantiList.findIndex(((obj: any) => obj.IdRistorante === e));
+    console.log(this.indiceRistorante, "valore indice Ristorante");
+    this.sharedService.costiConsegna = this.ristorantiList[this.indiceRistorante].CostiConsegna;
+    this.sharedService.idRistorante = this.ristorantiList[this.indiceRistorante].idRistorante;
+    this.sharedService.Logo = this.ristorantiList[this.indiceRistorante].Logo;
+    this.sharedService.ordineMinimo = this.ristorantiList[this.indiceRistorante].ordineMinimo;
+    this.sharedService.nomeRistorante = this.ristorantiList[this.indiceRistorante].Ristorante;
+    this.sharedService.tempiConsegna = this.ristorantiList[this.indiceRistorante].TempiConsegna;
+    this.sharedService.Tipologia = this.ristorantiList[this.indiceRistorante].tipologia.Tipologia;
+    
+    console.log(this.sharedService.costiConsegna, "COSTI CONSEGNA");
   }
 
 }

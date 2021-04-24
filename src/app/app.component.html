@@ -65,8 +65,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button (click)=closeModal() type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal">Chiudi</button>
-        <button [disabled]="testLogin()" (click)="postLoginUser()" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff;">Login</button>
+        <button (click)=closeModal() type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal" style="border: none;">Chiudi</button>
+        <button [disabled]="testLogin()" (click)="postLoginUser()" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff; border: none;">Login</button>
       </div>
     </div>
 </div>
@@ -121,8 +121,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button (click)=closeModal() type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-        <button [disabled]="testRegistrati()" (click)="postRegistrazioneUser()" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff;">Registrati</button>
+        <button (click)=closeModal() type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border: none;">Chiudi</button>
+        <button [disabled]="testRegistrati()" (click)="postRegistrazioneUser()" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff; border: none;">Registrati</button>
       </div>
     </div>
   </div>

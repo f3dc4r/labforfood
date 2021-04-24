@@ -1,76 +1,96 @@
 <div class="container" id="dettagliomenu">
-    <div class="row align-items-center dettagliomenu">
-        <div class="col-sm" style="font-size: small;"><button [routerLink]="['/ristoranti']" class="btn"
-                style="background-color: #b83d0f; color: #fff;">Back</button></div>
-        <div class="col-sm" style="font-size: small;"></div>
-        <div class="col-sm" style="font-size: small;"></div>
-        <div class="col-sm" style="font-size: small;"></div>
-    </div>
+  <div class="row align-items-center dettagliomenu">
+    <div class="col-sm" style="font-size: small;"><button [routerLink]="['/ristoranti']" class="btn"
+        style="background-color: #b83d0f; color: #fff;">Back</button></div>
+    <div class="col-sm" style="font-size: small;"></div>
+    <div class="col-sm" style="font-size: small;"></div>
+    <div class="col-sm" style="font-size: small;"><button [routerLink]="['/carrello']" class="btn"
+      style="background-color: #b83d0f; color: #fff;" matBadge="{{badgeCarrello}}" matBadgeOverlap="true" matBadgeColor="warn" [matBadgeHidden]="checkCarrello()">Carrello</button></div>
+  </div>
 </div>
 
 <div class="container">
-    <div class="row align-items-center">
-        <div class="col-3"></div>
-        <div class="col-6"><h1>Menu {{labelRistorante}}</h1></div>
-        <div class="col-3"></div>
+  <div class="row align-items-center">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h1>Menu {{labelRistorante}}</h1>
     </div>
+    <div class="col-3"></div>
+  </div>
 </div>
 
 <div class="container" id="dettagliomenu">
-    <div class="row align-items-center dettagliomenu">
-        <div class="col-sm" style="font-size: small;">Menu</div>
-        <div class="col-sm" style="font-size: small;">Descrizione</div>
-        <div class="col-sm" style="font-size: small;">Prezzo</div>
-        <div class="col-sm" style="font-size: small;"></div>
-    </div>
+  <div class="row align-items-center dettagliomenu">
+    <div class="col-sm" style="font-size: small;">Menu</div>
+    <div class="col-sm" style="font-size: small;">Descrizione</div>
+    <div class="col-sm" style="font-size: small;">Prezzo</div>
+    <div class="col-sm" style="font-size: small;"></div>
+  </div>
 </div>
 
 
 <div class="container" id="dettagliomenu">
-    <div class="row align-items-center dettagliomenu" *ngFor="let prodotti of menuList">
-        <div class="col-sm">{{prodotti.Prodotto}}</div>
-        <div class="col-sm" style="font-size: small;">{{prodotti.Descrizione}}</div>
-        <div class="col-sm" style="font-size: small;"><h6><i class="fas fa-coins"></i> € {{prodotti.Prezzo}}
-            </h6>
-        </div>
-        <div class="col-sm" style="font-size: small;" data-bs-toggle="tooltip" data-bs-placement="top" 
-        title="{{message}}"><button class="btn" id="addproduct"
-                (click)="openModal(addproduct)"
-                [disabled]="!sharedService.isLogged"
-                style="background-color: #b83d0f; color: #fff;">Aggiungi</button></div>
-                <!-- Modal Aggiungi Prodotto -->
-<ng-template #addproduct>
-    <div class="modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Aggiungi Prodotto</h5>
-          <button (click)=closeModal() type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-           
+  <div class="row align-items-center dettagliomenu" *ngFor="let prodotti of menuList">
+    <div class="col-sm">{{prodotti.Prodotto}}</div>
+    <div class="col-sm" style="font-size: small;">{{prodotti.Descrizione}}</div>
+    <div class="col-sm" style="font-size: small;">
+      <h6><i class="fas fa-coins"></i> € {{prodotti.Prezzo}}
+      </h6>
+    </div>
+    <div class="col-sm" style="font-size: small;" data-bs-toggle="tooltip" data-bs-placement="top" title="{{message}}">
+      <button class="btn" id="addproduct" (click)="openModal(addproduct)" [disabled]="!sharedService.isLogged"
+        style="background-color: #b83d0f; color: #fff;">Aggiungi</button></div>
+    <!-- Modal Aggiungi Prodotto -->
+    <ng-template #addproduct>
+      <div class="modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Aggiungi {{prodotti.Prodotto}}</h5>
+            <button (click)=closeModal() type="button" class="btn-close" data-bs-dismiss="modal"
+              aria-label="Close"></button>
           </div>
-          <div class="mb-3">
-            <label for="quantita" class="form-label">Quantita'</label>
-            <input [(ngModel)]="quantita" type="number" class="form-control" id="quantita">
+          <div class="modal-body">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-3">
+                  <button
+                    (click)="delQty()"
+                    type="button" class="btn btn-primary"
+                    style="background-color: #b83d0f; color: #fff; border: none; width: 100%; font-size: 2em; font-weight: bold;">-</button>
+                </div>
+
+                <div class="col-6">
+                  <input [(ngModel)]="quantita" class="form-control" id="quantita"
+                    style="border: none; font-size: 3em; text-align: center;" name="quantita" readonly>
+                </div>
+
+                <div class="col-3">
+                  <button
+                    (click)="addQty()"
+                    type="button" class="btn btn-primary"
+                    style="background-color: #b83d0f; color: #fff; border: none; width: 100%; font-size: 2em; font-weight: bold;">+</button>
+                </div>
+
+              </div>
+            </div>
+
           </div>
-          <div class="mb-3">
-           
+          <div class="modal-footer">
+            <div class="container">
+              <div class="row align-items-center">
+                <button
+                  (click)="addProdotto(prodotti.Prodotto, prodotti.Prezzo, prodotti.IdRistorante, prodotti.Ristorante, prodotti.IdProdotto)" [disabled]="isEmptyQuantity()"
+                  type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff; border: none;">Aggiungi al
+                  carrello</button>
+                    <span *ngIf="addProductMessage" class="alert alert-success" role="alert" style="margin-top: 5px;">
+                    Prodotto aggiunto
+                  </span>
+              </div>
+            </div>
+
           </div>
-    
-        </div>
-        <div class="modal-footer">
-          <button (click)="closeModal()" type="button" class="btn btn-secondary shadow-p3" data-bs-dismiss="modal">Chiudi</button>
-          <button (click)="addProdotto(prodotti.Prodotto, prodotti.Prezzo, prodotti.IdRistorante, prodotti.Ristorante, prodotti.IdProdotto)" type="button" class="btn btn-primary" style="background-color: #b83d0f; color: #fff;">Aggiungi al carrello</button>
-        </div>
-        <div *ngIf="addProductMessage" class="alert alert-success" role="alert">
-            Prodotto aggiunto
         </div>
       </div>
+    </ng-template>
   </div>
-  </ng-template>
-    </div>
 </div>
-
-<!--addProdotto(prodotti.Prodotto, prodotti.Prezzo, prodotti.IdRistorante, prodotti.Ristorante, prodotti.IdProdotto)-->
-

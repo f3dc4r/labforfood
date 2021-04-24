@@ -24,6 +24,8 @@ export class SharedService{
     costiConsegna : number;
     ordineMinimo : number;
     tempiConsegna : number;
+    Logo: string;
+    Tipologia: string;  
 
     usrIdLogged : number;
 

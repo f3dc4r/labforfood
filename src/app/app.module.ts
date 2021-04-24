@@ -19,6 +19,7 @@ import { DettaglioOrdiniComponent } from './dettaglio-ordini/dettaglio-ordini.co
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DettaglioMenuComponent } from './dettaglio-menu/dettaglio-menu.component';
 import { CarrelloComponent } from './carrello/carrello.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -57,7 +58,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatButtonModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     ModalModule.forRoot(),
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
