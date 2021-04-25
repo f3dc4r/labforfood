@@ -86,13 +86,17 @@ export class SharedService{
     }
     
     getOrdiniUtente():Observable<any>{
-        return this.http.get('http://l4com.labforweb.it/backend/web/index.php?r=utenti/ordini&id_usr=7'); //INSERIRE this.usrIdLogged
+        return this.http.get('http://l4com.labforweb.it/backend/web/index.php?r=utenti/ordini&id_usr=' + this.usrIdLogged); //INSERIRE this.usrIdLogged oppure 7
     }
 
     getDettaglioOrdine():Observable<any>{
         return this.http.get('http://l4com.labforweb.it/backend/web/index.php?r=utenti/ordine&IdOrdine=' + this.idOrdine);
     }
     
+    postOrdine(oggetto):Observable<any>{
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this.http.post<any>('http://l4com.labforweb.it/backend/web/index.php?r=ordini/insert&id_usr=' + this.usrIdLogged, oggetto, {headers});
+    }
     
     // getDati():Observable<any>{
     //     return this.http.get(urlMockJson);

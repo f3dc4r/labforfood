@@ -243,19 +243,8 @@ export class DettaglioMenuComponent implements OnInit {
 
 // TODO
 /*
-
-Visualizzare il carrello
-Passare i valori al componente carrello
-Calcolare il totale
-Applicare gli sconti
-Ricalcolare il totale
 Schermata indirizzo
-Schermata riassunto ordine
-Pagamento --> Inserimento Ordine --> Fare post
-
-
-Se vado al carrello posso tornare al detaglio ordine, ma non posso tornare alla lista ristoranti
-Se clicco su ristorante Apro modal che mi dice se voglio svuotare il carrello e ordinare da un altro ristorante oppure tornare al mio dettaglio ordine 
+Pagamento --> Inserimento Ordine --> Fare post 
 
 Cambiare le immagini di sfondo (una in particolare)
 

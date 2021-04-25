@@ -28,20 +28,23 @@
             </div>
 
             <div class="row align-items-center ristoranti" *ngFor="let elenco of carrelloList">
-                <div class="col-sm" style="font-size: small;"><button (click)="deleteProdotto(elenco.IdProdotto)" type="button" class="btn btn-primary"
-                    style="background-color: #fff; color: #b83d0f; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">x</button></div>
+                <div class="col-sm" style="font-size: small;"><button (click)="deleteProdotto(elenco.IdProdotto)"
+                        type="button" class="btn btn-primary"
+                        style="background-color: #fff; color: #b83d0f; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">x</button>
+                </div>
                 <div class="col-sm" style="font-size: small;">{{elenco.IdRistorante}}</div>
                 <div class="col-sm" style="font-size: small;">{{elenco.IdProdotto}}</div>
                 <div class="col-sm" style="font-size: small;">{{elenco.Prodotto}}</div>
                 <div class="col-sm" style="font-size: small;">{{elenco.Prezzo}}</div>
                 <div class="col-sm" style="font-size: small; text-align: right;">
                     <button (click)="delQty(elenco.IdProdotto)" type="button" class="btn btn-primary"
-                    style="background-color: #b83d0f; color: #fff; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">-</button>
+                        style="background-color: #b83d0f; color: #fff; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">-</button>
                 </div>
                 <div class="col-sm" style="font-size: 2em; text-align: center;">{{elenco.Unita}}</div>
                 <div class="col-sm" style="font-size: small;">
                     <button (click)="addQty(elenco.IdProdotto)" type="button" class="btn btn-primary"
-                    style="background-color: #b83d0f; color: #fff; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">+</button></div>
+                        style="background-color: #b83d0f; color: #fff; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">+</button>
+                </div>
                 <div class="col-sm" style="font-size: small;">€ {{elenco.totale}}</div>
             </div>
 
@@ -53,10 +56,37 @@
                 <div class="col-sm" style="font-size: small;"></div>
                 <div class="col-sm" style="font-size: small;"></div>
                 <div class="col-sm" style="font-size: small;"></div>
-                <div class="col-sm" style="font-size: small;">Ordine minimo: <p>Costi Consegna:</p></div>
-                <div class="col-sm">€ {{ordineMinimo}} <p>€ {{costiConsegna}}</p></div>
+                <div class="col-sm" style="font-size: small;">Ordine minimo: <p>Costi Consegna:</p>
+                </div>
+                <div class="col-sm">€ {{ordineMinimo}} <p>€ {{costiConsegna}}</p>
+                </div>
             </div>
 
+            <div class="row align-items-center ristoranti">
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;">Applica sconto:</div>
+                <div class="col-sm" style="font-size: small;"><input [(ngModel)]="testosconto" class="form-control"
+                        id="sconto" type="text" style="font-size: 1em; text-align: center;" name="sconto"></div>
+                <div class="col-sm"><button (click)="calcolaSconto(testosconto)" type="button" class="btn btn-primary"
+                        style="background-color: #b83d0f; color: #fff; border: none;">Applica</button>
+                </div>
+            </div>
+
+
+            <div class="row align-items-center ristoranti">
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm"><span *ngIf="testsconto" class="mb-3"><div class="alert alert-success" role="alert">{{msgSconto}}</div></span><span *ngIf="testscontoErr" class="mb-3"><div class="alert alert-warning" role="alert">{{msgSconto}}</div></span></div>
+            </div>
+            
+
+                    
 
             <div class="row align-items-center ristoranti">
                 <div class="col-sm" style="font-size: small;"></div>
@@ -69,6 +99,22 @@
                 <div class="col-sm" style="font-size: small;">Totale</div>
                 <div class="col-sm">
                     <h3>€ {{subTotale}}</h3>
+                </div>
+            </div>
+
+
+            <div class="row align-items-center ristoranti">
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm">
+                    <button [disabled]="!checkInvio" (click)="postInvioOrdine()" type="button" class="btn btn-primary"
+                        style="background-color: #b83d0f; color: #fff; border: none;">Invia Ordine</button>
                 </div>
             </div>
 
