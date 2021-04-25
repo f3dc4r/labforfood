@@ -1,1 +1,115 @@
-<p>carrello works!</p>
+<div class="container" id="ristoranti">
+    <div class="col-sm" style="font-size: small;">
+        <div class="container" id="ristoranti">
+
+            <div class="row align-items-center ristoranti">
+                <div class="col-sm" style="font-size: small;"><button (click)="openModal(modificaordine)" class="btn"
+                        style="background-color: #b83d0f; color: #fff;">Modifica Ordine</button></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+            </div>
+
+
+            <div class="row align-items-center ristoranti">
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;">ID Ristorante</div>
+                <div class="col-sm" style="font-size: small;">ID Prodotto</div>
+                <div class="col-sm" style="font-size: small;">Prodotto</div>
+                <div class="col-sm" style="font-size: small;">Prezzo</div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small; text-align: center;">Unita</div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;">Totale</div>
+
+            </div>
+
+            <div class="row align-items-center ristoranti" *ngFor="let elenco of carrelloList">
+                <div class="col-sm" style="font-size: small;"><button (click)="deleteProdotto(elenco.IdProdotto)" type="button" class="btn btn-primary"
+                    style="background-color: #fff; color: #b83d0f; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">x</button></div>
+                <div class="col-sm" style="font-size: small;">{{elenco.IdRistorante}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.IdProdotto}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.Prodotto}}</div>
+                <div class="col-sm" style="font-size: small;">{{elenco.Prezzo}}</div>
+                <div class="col-sm" style="font-size: small; text-align: right;">
+                    <button (click)="delQty(elenco.IdProdotto)" type="button" class="btn btn-primary"
+                    style="background-color: #b83d0f; color: #fff; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">-</button>
+                </div>
+                <div class="col-sm" style="font-size: 2em; text-align: center;">{{elenco.Unita}}</div>
+                <div class="col-sm" style="font-size: small;">
+                    <button (click)="addQty(elenco.IdProdotto)" type="button" class="btn btn-primary"
+                    style="background-color: #b83d0f; color: #fff; border: none; width: 50px; height: 50px; font-size: 2em; font-weight: bold;">+</button></div>
+                <div class="col-sm" style="font-size: small;">€ {{elenco.totale}}</div>
+            </div>
+
+            <div class="row align-items-center ristoranti">
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;">Ordine minimo: <p>Costi Consegna:</p></div>
+                <div class="col-sm">€ {{ordineMinimo}} <p>€ {{costiConsegna}}</p></div>
+            </div>
+
+
+            <div class="row align-items-center ristoranti">
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;"></div>
+                <div class="col-sm" style="font-size: small;">Totale</div>
+                <div class="col-sm">
+                    <h3>€ {{subTotale}}</h3>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal Modifica Ordine -->
+<ng-template #modificaordine>
+    <div class="modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modifica Ordine</h5>
+                <button (click)=closeModal() type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="alert alert-danger" role="alert">
+                        Attenzione! Stai per svuotare il carrello
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h4>Vuoi continuare?</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <button (click)=closeModal() type="button" class="btn btn-secondary shadow-p3"
+                                data-bs-dismiss="modal" style="border: none; width: 100%;">No</button>
+                        </div>
+                        <div class="col-6">
+                            <button (click)="modificaOrdine()" type="button" class="btn btn-primary"
+                                style="background-color: #b83d0f; color: #fff; border: none; width: 100%;">Si</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

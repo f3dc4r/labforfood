@@ -21,7 +21,15 @@ export class DettaglioMenuComponent implements OnInit {
 
   labelRistorante: any;
 
+  labelOrdineMinimo : any;
+
   message: string;
+
+  subTotale : number;
+
+  ordMinOkText : any;
+
+  ordMinOk : boolean = false;
 
   // Prodotti
 
@@ -53,6 +61,7 @@ export class DettaglioMenuComponent implements OnInit {
   ngOnInit(): void {
     this.getServerMenu();
     this.messaggioTooltip();
+    this.isOrdineMinimo();
   }
 
   openSnackBar(prodotto: string, prezzo: string) {
@@ -66,12 +75,24 @@ export class DettaglioMenuComponent implements OnInit {
     this.modalRef = this.modalService.show(addproduct);
   }
 
+  public openModalIndietro(indietroristorante: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(indietroristorante);
+  }
+
   public closeModal() {
     this.modalService.hide();
   }
 
-  goListaMenu() {
-    this.route.navigate(['/dettaglio-menu']); // navigate to other page
+  indietroRistoranti(){
+    this.arrProdotti = [];
+    this.sharedService.serviceCarrello = [];
+    this.sharedService.isOrder = false;
+    this.closeModal();
+    this.goRistoranti();
+  }
+
+  goRistoranti() {
+    this.route.navigate(['/ristoranti']); // navigate to ristoranti
   }
 
   messaggioTooltip() {
@@ -108,7 +129,7 @@ export class DettaglioMenuComponent implements OnInit {
   }
 
   addProdotto(product, price, IdRestaurant, Restaurant, IdProduct, ) {
-    this.P_utente = this.sharedService.areaRiservata.IdUtente;
+    this.P_utente = this.sharedService.usrIdLogged;
     console.log(this.P_utente);
     this.nomeRistorante = Restaurant;
     this.IdRistorante = IdRestaurant;
@@ -129,6 +150,10 @@ export class DettaglioMenuComponent implements OnInit {
       setTimeout(() => { this.modalService.hide(); }, 1000);
       this.quantita = 0;
       this.badgeCarrello = this.arrProdotti.length;
+      this.sharedService.serviceCarrello = this.arrProdotti;
+      this.sharedService.isOrder = true;
+      this.calcoloSubTotaleOrdine();
+      this.isOrdineMinimo();
 
     } else {
 
@@ -143,6 +168,10 @@ export class DettaglioMenuComponent implements OnInit {
         setTimeout(() => { this.modalService.hide(); }, 1000);
         this.quantita = 0;
         this.badgeCarrello = this.arrProdotti.length;
+        this.sharedService.serviceCarrello = this.arrProdotti;
+        this.sharedService.isOrder = true;
+        this.calcoloSubTotaleOrdine();
+        this.isOrdineMinimo();
 
       } else {
         this.arrProdotti.push({ IdRistorante: this.IdRistorante, P_utente: this.P_utente, IdProdotto: this.IdProdotto, Prezzo: this.Prezzo, Prodotto: this.Prodotto, Unita: this.Unita, totale: this.totale });
@@ -152,6 +181,10 @@ export class DettaglioMenuComponent implements OnInit {
         setTimeout(() => { this.modalService.hide(); }, 1000);
         this.quantita = 0;
         this.badgeCarrello = this.arrProdotti.length;
+        this.sharedService.serviceCarrello = this.arrProdotti;
+        this.sharedService.isOrder = true;
+        this.calcoloSubTotaleOrdine();
+        this.isOrdineMinimo();
 
       }
     }
@@ -162,6 +195,14 @@ export class DettaglioMenuComponent implements OnInit {
       return true;
     } else {
       return false;
+    }
+  }
+
+  checkOrdMinimo(){
+    if (this.ordMinOk){
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -177,6 +218,25 @@ export class DettaglioMenuComponent implements OnInit {
     })
   }
 
+  isOrdineMinimo(){
+    if (this.subTotale < this.sharedService.ordineMinimo){
+      this.ordMinOkText = this.sharedService.ordineMinimo - this.subTotale;
+    } else if (this.subTotale == undefined || this.subTotale == null){
+      this.ordMinOkText = this.sharedService.ordineMinimo;
+    } else {
+      this.ordMinOk = true;
+      this.ordMinOkText = 0;
+      this.checkOrdMinimo();
+    }
+  }
+
+  calcoloSubTotaleOrdine(){
+    console.log(this.arrProdotti , "PRIMA DI CALCOLARE IL TOTALE");
+    this.subTotale = this.arrProdotti.reduce(function (total, currentValue) {
+      return parseFloat(total + (currentValue.Unita * currentValue.Prezzo));
+  }, 0);
+  console.log(this.subTotale, "SUB TOTALE");
+  }
 
 }
 

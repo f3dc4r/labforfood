@@ -18,6 +18,7 @@ export class SharedService{
 
     idOrdine : number;
 
+    // Ristorante
 
     idRistorante : number;
     nomeRistorante : string;
@@ -27,9 +28,13 @@ export class SharedService{
     Logo: string;
     Tipologia: string;  
 
+    // User
+
     usrIdLogged : number;
 
     isLogged : boolean = false;
+
+    isOrder : boolean = false;
 
     // Session 
 
@@ -41,6 +46,10 @@ export class SharedService{
     areaRiservata : any;
 
     userName : string;
+
+    // Carrello
+
+    serviceCarrello : any;
 
     constructor(private http : HttpClient){}
 

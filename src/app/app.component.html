@@ -16,7 +16,7 @@
         <li *ngIf="sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="carrello" [routerLink]="['/carrello']"><i class="fas fa-shopping-basket"></i> Carrello</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!sharedService.isOrder" class="nav-item">
           <a class="nav-link" href="#" [routerLink]="['/ristoranti']" routerLinkActive="router-link-active"><i
               class="fas fa-utensils"></i> Ristoranti</a>
         </li>
@@ -29,7 +29,7 @@
         </li>
         <li *ngIf="sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="areariservata" href="#" [routerLink]="['/area-riservata']" routerLinkActive="router-link-active"><i class="fas fa-user"></i>
-             Area riservata - Ciao, {{sharedService.userName}}</a>
+             Area riservata</a>
         </li>
         <li *ngIf="sharedService.isLogged" class="nav-item">
           <a class="nav-link" id="logout" (click)=logout()>

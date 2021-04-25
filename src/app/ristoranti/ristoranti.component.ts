@@ -26,10 +26,6 @@ export class RistorantiComponent implements OnInit {
     this.sharedService.getRistoranti().subscribe(data=>{
       console.log(data, 'SERVER RESPONSE');
       this.ristorantiList = data;
-      /*this.sharedService.nomeRistorante = this.ristorantiList.Ristorante;
-      this.sharedService.idRistorante = this.ristorantiList.IdRistorante;
-      this.sharedService.costiConsegna = this.ristorantiList.costiConsegna;
-      console.log(this.sharedService.costiConsegna, "COSTI CONSEGNA");*/
       this.ngxService.stop();
     })
   }
@@ -41,12 +37,13 @@ export class RistorantiComponent implements OnInit {
     this.sharedService.costiConsegna = this.ristorantiList[this.indiceRistorante].CostiConsegna;
     this.sharedService.idRistorante = this.ristorantiList[this.indiceRistorante].idRistorante;
     this.sharedService.Logo = this.ristorantiList[this.indiceRistorante].Logo;
-    this.sharedService.ordineMinimo = this.ristorantiList[this.indiceRistorante].ordineMinimo;
+    this.sharedService.ordineMinimo = this.ristorantiList[this.indiceRistorante].OrdineMinimo;
     this.sharedService.nomeRistorante = this.ristorantiList[this.indiceRistorante].Ristorante;
     this.sharedService.tempiConsegna = this.ristorantiList[this.indiceRistorante].TempiConsegna;
     this.sharedService.Tipologia = this.ristorantiList[this.indiceRistorante].tipologia.Tipologia;
     
     console.log(this.sharedService.costiConsegna, "COSTI CONSEGNA");
+    console.log(this.sharedService.ordineMinimo, "ORDINE MINIMO");
   }
 
 }

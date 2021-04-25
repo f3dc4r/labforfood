@@ -49,7 +49,6 @@ export class AppComponent {
 
   errorMessage : string;
 
-
   public openModal(login: TemplateRef<any>){
     this.modalRef = this.modalService.show(login);
   }
@@ -169,7 +168,7 @@ export class AppComponent {
           this.errorUserMessage = false;
           this.sessionStorageSetItem();
           this.modalService.hide();
-          this.goAreaRiservata();
+          this.goRistoranti();
           this.loginUsername = "";
           this.loginPassword = "";
           this.ngxService.stop();
