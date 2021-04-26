@@ -8,6 +8,8 @@ const urlRegistrazione = 'http://l4com.labforweb.it/backend/web/test/ws/users/ad
 
 const urlLogin = 'http://l4com.labforweb.it/backend/web/test/ws/users/checkUser.php';
 
+const urlOrdine = 'http://l4com.labforweb.it/backend/web/test/ws/users/insertOrdine.php?r=ordini/insertid_usr=';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -95,7 +97,7 @@ export class SharedService{
     
     postOrdine(oggetto):Observable<any>{
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post<any>('http://l4com.labforweb.it/backend/web/index.php?r=ordini/insert&id_usr=' + this.usrIdLogged, oggetto, {headers});
+        return this.http.post<any>(urlOrdine + this.usrIdLogged, oggetto, {headers});
     }
     
     // getDati():Observable<any>{

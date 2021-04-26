@@ -130,10 +130,10 @@ export class DettaglioMenuComponent implements OnInit {
 
   addProdotto(product, price, IdRestaurant, Restaurant, IdProduct, ) {
     this.P_utente = this.sharedService.usrIdLogged;
-    console.log(this.P_utente);
+    console.log(this.P_utente, "ID Utente");
     this.nomeRistorante = Restaurant;
-    this.IdRistorante = IdRestaurant;
-    this.IdProdotto = IdProduct;
+    this.IdRistorante = parseInt(IdRestaurant);
+    this.IdProdotto = parseInt(IdProduct);
     this.Prezzo = parseFloat(price);
     this.Prodotto = product;
     this.Unita = this.quantita;
@@ -144,7 +144,9 @@ export class DettaglioMenuComponent implements OnInit {
 
     if (this.arrProdotti.length == 0) {
       this.arrProdotti.push({ IdRistorante: this.IdRistorante, P_utente: this.P_utente, IdProdotto: this.IdProdotto, Prezzo: this.Prezzo, Prodotto: this.Prodotto, Unita: this.Unita, totale: this.totale });
+      console.log(typeof(this.arrProdotti[0].P_Utente), "Visualizza tipo");
       console.log(this.arrProdotti, "arr Prodotto nuovo prodotto");
+
       this.addProductMessage = true;
       setTimeout(() => { this.addProductMessage = false; }, 2000);
       setTimeout(() => { this.modalService.hide(); }, 1000);

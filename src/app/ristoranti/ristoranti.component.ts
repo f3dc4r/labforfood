@@ -35,7 +35,7 @@ export class RistorantiComponent implements OnInit {
     this.indiceRistorante = this.ristorantiList.findIndex(((obj: any) => obj.IdRistorante === e));
     console.log(this.indiceRistorante, "valore indice Ristorante");
     this.sharedService.costiConsegna = parseFloat(this.ristorantiList[this.indiceRistorante].CostiConsegna);
-    this.sharedService.idRistorante = this.ristorantiList[this.indiceRistorante].idRistorante;
+    this.sharedService.idRistorante = parseInt(this.ristorantiList[this.indiceRistorante].idRistorante);
     this.sharedService.Logo = this.ristorantiList[this.indiceRistorante].Logo;
     this.sharedService.ordineMinimo = parseFloat(this.ristorantiList[this.indiceRistorante].OrdineMinimo);
     this.sharedService.nomeRistorante = this.ristorantiList[this.indiceRistorante].Ristorante;

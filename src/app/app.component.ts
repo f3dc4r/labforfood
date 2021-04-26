@@ -163,7 +163,7 @@ export class AppComponent {
         this.usrLogin = data;
         if(this.usrLogin.loggedIn){
           this.ngxService.start();
-          this.sharedService.usrIdLogged = this.usrLogin.IdUtente;
+          this.sharedService.usrIdLogged = parseInt(this.usrLogin.IdUtente);
           this.sharedService.isLogged = this.usrLogin.loggedIn;
           this.errorUserMessage = false;
           this.sessionStorageSetItem();
