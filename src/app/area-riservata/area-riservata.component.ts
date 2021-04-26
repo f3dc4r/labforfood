@@ -22,7 +22,7 @@ export class AreaRiservataComponent implements OnInit {
     this.sharedService.getAreaRiservata().subscribe(data=>{
       console.log(data, 'AREA RISERVATA RESPONSE');
       this.sharedService.areaRiservata = data;
-      this.sharedService.userName = this.sharedService.areaRiservata.nominativo;
+      //this.sharedService.userName = this.sharedService.areaRiservata.nominativo;
       this.ngxService.stop();
     })
   }

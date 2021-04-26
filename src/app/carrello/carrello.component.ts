@@ -11,75 +11,75 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class CarrelloComponent implements OnInit {
 
-  idProdotto : number;
+  idProdotto: number;
 
-  carrelloList : any;
+  carrelloList: any;
 
-  subTotale : number;
+  subTotale: number;
 
-  indiceArr : any;
+  indiceArr: any;
 
-  ordineMinimo : number;
+  ordineMinimo: number;
 
-  costiConsegna : number = 0;
+  costiConsegna: number = 0;
 
-  public modalRef:BsModalRef;
-  public modalNewRef:BsModalRef;
+  public modalRef: BsModalRef;
+  public modalNewRef: BsModalRef;
 
-  testosconto : string;
+  testosconto: string;
 
-  msgSconto : string;
+  msgSconto: string;
 
   testsconto = false;
 
   testscontoErr = false;
 
-  scontoCliccato : boolean = false;
+  scontoCliccato: boolean = false;
 
-  datiInviati : any;
+  datiInviati: any;
 
-  checkInvio : boolean = false;
+  checkInvio: boolean = false;
 
-  constructor(public sharedService : SharedService, public ngxService: NgxUiLoaderService, private route:Router, private modalService : BsModalService) { }
+  constructor(public sharedService: SharedService, public ngxService: NgxUiLoaderService, private route: Router, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.getCarrello();
     this.calcoloSubTotaleOrdine();
   }
 
-  getCarrello(){
+  getCarrello() {
     this.carrelloList = this.sharedService.serviceCarrello;
     this.ordineMinimo = this.sharedService.ordineMinimo;
     console.log(this.carrelloList, "Cosa c'è dentro carrelloList");
-    if (this.carrelloList.length == 0){
+    if (this.carrelloList.length == 0) {
       this.checkInvio = false;
-    }else{
+    } else {
       this.checkInvio = true;
     }
   }
 
-  chkOrdine(){
-    if (this.carrelloList){
+  chkOrdine() {
+    if (this.carrelloList) {
       this.sharedService.isOrder = true;
     } else {
       this.sharedService.isOrder = false;
     }
-    
+
   }
 
-  public openModal(modificaordine: TemplateRef<any>){
+  public openModal(modificaordine: TemplateRef<any>) {
     this.modalRef = this.modalService.show(modificaordine);
   }
 
-  public closeModal(){
+  public closeModal() {
     this.modalService.hide();
   }
 
-  goRistoranti(){
-		this.route.navigate(['/ristoranti']); // navigate to ristoranti
-	}
+  goRistoranti() {
+    this.route.navigate(['/ristoranti']); // navigate to ristoranti
+  }
 
-  modificaOrdine(){
+  modificaOrdine() {
     this.sharedService.serviceCarrello = [];
     this.carrelloList = [];
     this.sharedService.costiConsegna = 0;
@@ -91,41 +91,41 @@ export class CarrelloComponent implements OnInit {
     this.goRistoranti();
   }
 
-  calcoloSubTotaleOrdine(){
+  calcoloSubTotaleOrdine() {
     console.log(this.carrelloList);
-    this.subTotale = this.carrelloList.reduce(function (total:number, currentValue) {
+    this.subTotale = this.carrelloList.reduce(function (total: number, currentValue) {
       return total + (currentValue.totale);
-  }, 0);
-  if(this.subTotale >= this.ordineMinimo){
-    this.costiConsegna = 0;
-    this.subTotale = this.subTotale + this.costiConsegna;
-    this.checkInvio = true;
-  } else if(this.subTotale < this.ordineMinimo) {
-    this.costiConsegna = this.sharedService.costiConsegna;
-    this.subTotale = this.subTotale + this.costiConsegna;
-    this.checkInvio = true;
-  }
-  
-  console.log(this.subTotale);
-  console.log(typeof(this.subTotale));
-  }
-
-  calcolasubTotaleScontato(){
-    if(this.subTotale >= this.ordineMinimo){
+    }, 0);
+    if (this.subTotale >= this.ordineMinimo) {
       this.costiConsegna = 0;
       this.subTotale = this.subTotale + this.costiConsegna;
       this.checkInvio = true;
-    } else if(this.subTotale < this.ordineMinimo) {
+    } else if (this.subTotale < this.ordineMinimo) {
+      this.costiConsegna = this.sharedService.costiConsegna;
+      this.subTotale = this.subTotale + this.costiConsegna;
+      this.checkInvio = true;
+    }
+
+    console.log(this.subTotale);
+    console.log(typeof (this.subTotale));
+  }
+
+  calcolasubTotaleScontato() {
+    if (this.subTotale >= this.ordineMinimo) {
+      this.costiConsegna = 0;
+      this.subTotale = this.subTotale + this.costiConsegna;
+      this.checkInvio = true;
+    } else if (this.subTotale < this.ordineMinimo) {
       this.calcoloSubTotaleOrdine();
     }
   }
 
-  addQty(idprodotto){
+  addQty(idprodotto) {
     this.idProdotto = idprodotto;
     this.indiceArr = this.carrelloList.findIndex(((obj: any) => obj.IdProdotto === this.idProdotto));
     console.log(this.indiceArr, "valore indiceArr");
     if (this.indiceArr !== -1 || this.indiceArr === undefined || this.indiceArr === null) {
-      if(this.carrelloList[this.indiceArr].Unita < 99){
+      if (this.carrelloList[this.indiceArr].Unita < 99) {
         this.carrelloList[this.indiceArr].Unita++;
         this.carrelloList[this.indiceArr].totale = this.carrelloList[this.indiceArr].Unita * this.carrelloList[this.indiceArr].Prezzo;
         this.calcoloSubTotaleOrdine();
@@ -133,53 +133,53 @@ export class CarrelloComponent implements OnInit {
         this.scontoCliccato = false;
         this.testsconto = false;
         this.testsconto = false;
-      }else{
+      } else {
         return 0;
       }
-    }else{
+    } else {
       return 0;
     }
   }
 
-  delQty(idprodotto){
+  delQty(idprodotto) {
     this.idProdotto = idprodotto;
     this.indiceArr = this.carrelloList.findIndex(((obj: any) => obj.IdProdotto === this.idProdotto));
     console.log(this.indiceArr, "valore indiceArr");
     if (this.indiceArr !== -1 || this.indiceArr === undefined || this.indiceArr === null) {
-    if (this.carrelloList[this.indiceArr].Unita > 0){
-      this.carrelloList[this.indiceArr].Unita--;
-      if (this.carrelloList[this.indiceArr].Unita === 0){
+      if (this.carrelloList[this.indiceArr].Unita > 0) {
+        this.carrelloList[this.indiceArr].Unita--;
+        if (this.carrelloList[this.indiceArr].Unita === 0) {
+          this.deleteProdotto(idprodotto);
+          this.calcoloSubTotaleOrdine();
+          this.chkOrdine();
+          this.scontoCliccato = false;
+          this.testsconto = false;
+          this.testsconto = false;
+        } else {
+          this.carrelloList[this.indiceArr].totale = this.carrelloList[this.indiceArr].Unita * this.carrelloList[this.indiceArr].Prezzo;
+          this.carrelloList[this.indiceArr].totale = this.carrelloList[this.indiceArr].totale;
+          this.calcoloSubTotaleOrdine();
+          this.chkOrdine();
+          this.scontoCliccato = false;
+          this.testsconto = false;
+          this.testsconto = false;
+        }
+      } else if (this.carrelloList[this.indiceArr].Unita === 0) {
         this.deleteProdotto(idprodotto);
-        this.calcoloSubTotaleOrdine();
-        this.chkOrdine();
-        this.scontoCliccato = false;
-        this.testsconto = false;
-        this.testsconto = false;
-      }else{
-        this.carrelloList[this.indiceArr].totale = this.carrelloList[this.indiceArr].Unita * this.carrelloList[this.indiceArr].Prezzo;
-        this.carrelloList[this.indiceArr].totale = this.carrelloList[this.indiceArr].totale;
-        this.calcoloSubTotaleOrdine();
         this.chkOrdine();
         this.scontoCliccato = false;
         this.testsconto = false;
         this.testsconto = false;
       }
-    }else if(this.carrelloList[this.indiceArr].Unita === 0){
-        this.deleteProdotto(idprodotto);
-        this.chkOrdine();
-        this.scontoCliccato = false;
-        this.testsconto = false;
-        this.testsconto = false;
-      }
-    }else {
+    } else {
       return 0;
     }
 
   }
 
-  deleteProdotto(idprodotto){
+  deleteProdotto(idprodotto) {
     console.log(this.carrelloList.length, "lunghezza carrelloList");
-      this.idProdotto = idprodotto;
+    this.idProdotto = idprodotto;
     this.indiceArr = this.carrelloList.findIndex(((obj: any) => obj.IdProdotto === this.idProdotto));
     console.log(this.indiceArr, "valore indiceArr");
     this.carrelloList.splice(this.indiceArr, 1);
@@ -188,20 +188,20 @@ export class CarrelloComponent implements OnInit {
     this.scontoCliccato = false;
     this.testsconto = false;
     this.testsconto = false;
-    if(this.carrelloList.length == 0){
+    if (this.carrelloList.length == 0) {
       this.ordineMinimo = 0;
       this.costiConsegna = 0;
       this.subTotale = 0;
       this.checkInvio = false;
     }
-  
+
   }
 
-  calcolaSconto(testosconto){
+  calcolaSconto(testosconto) {
     this.calcolasubTotaleScontato();
-    if (!this.scontoCliccato && this.subTotale >= this.ordineMinimo){
+    if (!this.scontoCliccato && this.subTotale >= this.ordineMinimo) {
 
-      if (testosconto === "SCONTO10"){
+      if (testosconto === "SCONTO10") {
         this.subTotale = parseFloat((this.subTotale * 0.9).toFixed(2));
         parseFloat(this.subTotale.toFixed(2));
         this.testsconto = true;
@@ -209,7 +209,7 @@ export class CarrelloComponent implements OnInit {
         this.msgSconto = "Applicato sconto del 10%";
         this.calcolasubTotaleScontato();
         this.scontoCliccato = true;
-      } else if (testosconto === "SCONTO20"){
+      } else if (testosconto === "SCONTO20") {
         this.subTotale = parseFloat((this.subTotale * 0.8).toFixed(2));
         parseFloat(this.subTotale.toFixed(2));
         this.testsconto = true;
@@ -225,29 +225,31 @@ export class CarrelloComponent implements OnInit {
       }
       console.log(this.subTotale, "DOPO SCONTO");
 
-    }else{
+    } else {
 
       return 0;
 
     }
-    
+
   }
 
-  postInvioOrdine(){
+  postInvioOrdine() {
     console.log(this.carrelloList, "CARRELLO LIST POST");
-    this.sharedService.postOrdine(this.carrelloList).subscribe(data =>{
-        this.ngxService.start();
-        console.log(data, 'Dati nella post');
-        this.datiInviati = data;
-        if(this.datiInviati.orderAdded){
-          alert(this.datiInviati.message);
-          this.carrelloList = [];
-          this.ngxService.stop();
-        }else{
-          alert(this.datiInviati.message);
-          this.ngxService.stop();
-        }
-  })
+    this.sharedService.postOrdine(this.carrelloList).subscribe(data => {
+      this.ngxService.start();
+      console.log(data, 'Dati nella post');
+      this.datiInviati = data;
+      if (this.datiInviati.orderAdded) {
+        alert(this.datiInviati.message);
+        this.carrelloList = [];
+        this.subTotale = 0;
+        this.ordineMinimo = 0;
+        this.ngxService.stop();
+      } else {
+        alert(this.datiInviati.message);
+        this.ngxService.stop();
+      }
+    })
   }
 
 }
