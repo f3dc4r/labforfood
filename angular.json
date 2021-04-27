@@ -31,7 +31,9 @@
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/jquery/dist/jquery.min.js"]
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -95,7 +97,9 @@
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": ["../node_modules/jquery/dist/jquery.min.js" ]
+            "scripts": [
+              "../node_modules/jquery/dist/jquery.min.js"
+            ]
           }
         },
         "lint": {
@@ -122,6 +126,10 @@
               "devServerTarget": "labforfood:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
