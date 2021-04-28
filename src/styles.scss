@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */ 
+body{
+  background-image: url('../src/assets/img/background-pattern.jpg');
+}
 
 .navbar{
     position: absolute;
@@ -187,9 +190,14 @@
   // ristoranti
 
   .ristoranti{
-    margin-top: 2%;
+    // margin-top: 2%;
     padding: 10px;
     box-shadow: 10px 10px 20px #dedede;
+    background-color: #fff;
+  }
+
+  .ristoranti:first-child{
+    margin-top: 2%;
   }
 
   .infoutente{
@@ -201,14 +209,24 @@
   }
 
   .menu{
-    margin-top: 5%;
+    //margin-top: 5%;
+    background-color: #fff;
     padding: 10px;
     box-shadow: 10px 10px 20px #dedede;
+  }
+
+  .menu:first-child{
+    margin-top: 5%;
   }
 
   .dettagliomenu{
     padding: 10px;
     box-shadow: 10px 10px 20px #dedede;
+    background-color: #fff;
+  }
+
+  #dettagliomenu:first-child{
+    margin-top: 2%;
   }
 
   // media query
