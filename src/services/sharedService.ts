@@ -16,6 +16,8 @@ const urlOrdine = 'http://l4com.labforweb.it/backend/web/test/ws/users/insertOrd
 
 export class SharedService{
 
+    indirizzo : any;
+
     id : number = null;
 
     idOrdine : number;

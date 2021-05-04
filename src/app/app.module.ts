@@ -20,6 +20,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DettaglioMenuComponent } from './dettaglio-menu/dettaglio-menu.component';
 import { CarrelloComponent } from './carrello/carrello.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 
 
@@ -59,7 +60,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     ModalModule.forRoot(),
     MatSnackBarModule,
-    MatBadgeModule
+    MatBadgeModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
